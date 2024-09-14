@@ -8,3 +8,4 @@ e desde então viemos de geração em geração levando o legado dele.
 #### **em nosso teremos:**
 + reservas 
 + cardapio digital
++ delivery
