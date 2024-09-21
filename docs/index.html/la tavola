@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Restaurante LA TAVOLA</title>
+</head>
+<body> 
+<img src="https://i.imgur.com/34K24zF.png" height="30%" width="30%"></>
+
+<center
+
+    <header>
+        <h1>Restaurante LA TAVOLA</h1>
+        <nav>
+            <ul>
+                <li><a href="sobre">Sobre</a></li>
+                <li><a href="menu">Menu</a></li>
+                <li><a href="contato">Contato</a></li>
+                <li><a href="reservas">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Olá, seja bem vindo ao la tavola italiana o nosso projeto e basicamente um site simples e ficticio de restaurante italiano.Nosso restaurante foi criado no ano de <b>1889</b> pelo nosso QUERIDO:  <b>VICENZO LOPES</b>, e desde então viemos de geração em geração levando o legado dele.</p>
+    </section>
+
+    <section id="menu">
+        <h2>Horário de Funcionamento</h2>
+        <ul>
+            <li><b>Almoço:</b> Terça a Sexta, das 12h às 15h</li>
+            <li><b>Jantar:</b> Terça a Sexta, das 19h às 23h.</li>
+            <li><b>Finais de Semana:</b> das 11h às 15h / das 19h ás 22h.</li>
+        </ul>
+    </section>
+
+    <section id="contato">
+        <h2>Contato</h2>
+        <p><b>Email:</b> contato@restaurantelatavola.com</p>
+        <p><b>Telefone:</b> (00) 0000-0000</p>
+    </section>
+
+    <footer>
