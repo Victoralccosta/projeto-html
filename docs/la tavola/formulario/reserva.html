@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva LA TAVOLA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+        input[type="submit"] {
+            width: auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulário de Reserva LA TAVOLA</h1>
+    <form action="/reservar" method="post">
+        <label for="nombre"> Nome:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email"> Email para contato:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="Telefone">Telefone:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <label for="personas">Número de Pessoas:</label>
+        <select id="personas" name="personas" required>
+            <option value="">Selecciona</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+        <label for="fecha">Fechamento de Reserva:</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <label for="hora">Horário de Reserva:</label>
+        <input type="time" id="hora" name="hora" required>
+
+        <label for="comentarios">Comentários:</label>
+        <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+
+        <input type="submit" value="Fazer Reserva">
+    </form>
+</body>
+</html>
