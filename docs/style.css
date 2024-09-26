@@ -1,4 +1,5 @@
 body {
-    background-image:url(background.png);
+    background-image:url(bkg.jpg);
+    background-size: cover;
 }
 
