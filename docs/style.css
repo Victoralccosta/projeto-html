@@ -1,39 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botão Estilizado</title>
-    <style>
-        /* Estilizando o botão */
-        .botao {
-            background-color: #035807; /* Cor de fundo */
-            color: white; /* Cor do texto */
-            border: none; /* Sem borda */
-            padding: 5px 5px; /* Espaçamento interno */
-            text-align: center; /* Centraliza o texto */
-            text-decoration: none; /* Remove o sublinhado */
-            display: inline-block; /* Permite definir dimensões */
-            font-size: 16px; /* Tamanho da fonte */
-            margin: 4px 2px; /* Margem */
-            cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-            border-radius: 4px; /* Bordas arredondadas */
-            transition: background-color 0.3s; /* Efeito de transição */
-        }
-
-        /* Efeito ao passar o mouse */
-        .botao:hover {
-            background-color: #035807; /* Cor ao passar o mouse */
-        }
-    </style>
-</head>
-<body>
-
-<!-- Botão estilizado -->
-<button class="botao">Menu</button>
-<button class="botao">Reservas</button>
-<button class="botao">Contatos</button>
-<button class="botao">Sobre</button>
-
-</body>
-</html>
+body {
+    background-image: url('docs/background-image'); /* Coloque o caminho correto da imagem */
+    background-size: cover; /* Faz a imagem cobrir toda a área */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Impede a repetição da imagem */
+    height: 100vh; /* Garante que o corpo ocupe toda a altura da janela */
+    margin: 0; /* Remove margens padrão */
+}
