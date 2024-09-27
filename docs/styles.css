@@ -1,8 +1,9 @@
 body {
-    background-image: url(bkg/background.jpg); /* Coloque o caminho correto da imagem */
-    background-size: cover; /* Faz a imagem cobrir toda a área */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Impede a repetição da imagem */
-    height: 100vh; /* Garante que o corpo ocupe toda a altura da janela */
-    margin: 0; /* Remove margens padrão */
+    background-image: url(bkg/background.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100vh; 
+    margin: 0; 
+    z-index: -1;
 }
