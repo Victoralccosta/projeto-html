@@ -1,5 +1,5 @@
 body {
-    background-image: url('docs/backgroud.jpg'); /* Coloque o caminho correto da imagem */
+    background-image: url(bkg/background.jpg); /* Coloque o caminho correto da imagem */
     background-size: cover; /* Faz a imagem cobrir toda a área */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição da imagem */
