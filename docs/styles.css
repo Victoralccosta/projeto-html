@@ -8,3 +8,20 @@ body {
     z-index: -1;
     
 }
+.logo-container {
+    position: relative;
+    text-align: center;
+}
+
+.logotipo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px; /* Ajuste o tamanho conforme necessário */
+}
+
+h1 {
+    position: relative;
+    z-index: 1; /* Garante que o texto fique acima do logotipo */
+}
