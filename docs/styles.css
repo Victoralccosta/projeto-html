@@ -3,12 +3,6 @@ body {
     background-color: #298427;
     color: white;
     
-    background-image: url(bkg/background.jpg);
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    height: 100vh; 
-    margin: 0; 
 }
 header {
     background-color: #b22222;
