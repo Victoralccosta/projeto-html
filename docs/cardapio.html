@@ -72,13 +72,31 @@
         .adicionar:hover {
             background-color: #0e5c24; /* Verde escuro */
         }
+        #carrinho {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
     </style>
     <script>
         const carrinho = [];
 
         function adicionarAoCarrinho(nome, preco) {
             carrinho.push({ nome, preco });
+            atualizarCarrinho();
             alert(`${nome} foi adicionado ao carrinho!`);
+        }
+
+        function atualizarCarrinho() {
+            const carrinhoContainer = document.getElementById('carrinho');
+            carrinhoContainer.innerHTML = '<h3>Carrinho:</h3>';
+            if (carrinho.length === 0) {
+                carrinhoContainer.innerHTML += '<p>O carrinho está vazio.</p>';
+            } else {
+                carrinho.forEach(item => {
+                    carrinhoContainer.innerHTML += `<p>${item.nome} - R$${item.preco.toFixed(2)}</p>`;
+                });
+            }
         }
     </script>
 </head>
@@ -194,5 +212,7 @@
             </div>  
         </div>
     </section>
+
+    <div id="carrinho"></div>
 </body>
 </html>
