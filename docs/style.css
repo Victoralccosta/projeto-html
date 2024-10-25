@@ -518,6 +518,26 @@ footer {
         text-align: center;
         width: 200px;
      }
+     /* Estilos para mobile (base) */
+body {
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* Estilos para tablets e desktops */
+@media (min-width: 768px) {
+    body {
+        font-size: 18px;
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 20px;
+        padding: 30px;
+    }
+}
+
 
     
-}
