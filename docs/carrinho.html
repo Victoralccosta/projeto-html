@@ -60,24 +60,6 @@
 
 <h1>La Távola - Carrinho de Compras</h1>
 
-<div class="produto">
-    <h2>Pasta Carbonara</h2>
-    <p>Preço: R$ 30,00</p>
-    <button onclick="adicionarAoCarrinho('Pasta Carbonara', 30)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="produto">
-    <h2>Pizza Margherita</h2>
-    <p>Preço: R$ 40,00</p>
-    <button onclick="adicionarAoCarrinho('Pizza Margherita', 40)">Adicionar ao Carrinho</button>
-</div>
-
-<div class="produto">
-    <h2>Tiramisu</h2>
-    <p>Preço: R$ 15,00</p>
-    <button onclick="adicionarAoCarrinho('Tiramisu', 15)">Adicionar ao Carrinho</button>
-</div>
-
 <div class="carrinho">
     <h2>Carrinho</h2>
     <ul id="itensCarrinho"></ul>
@@ -112,6 +94,55 @@
         }
     }
 </script>
+
+<!-- O código abaixo é o do cardápio, onde os itens chamam a função adicionarAoCarrinho -->
+<section class="cardapio" id="cardapio">
+    <div class="produto">
+        <h2>Macarrão à Bolonhesa</h2>
+        <p>Preço: R$ 79,00</p>
+        <button onclick="adicionarAoCarrinho('Macarrão à Bolonhesa', 79)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <h2>Macarrão Penne</h2>
+        <p>Preço: R$ 65,00</p>
+        <button onclick="adicionarAoCarrinho('Macarrão Penne', 65)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <h2>Espaguete Carbonara</h2>
+        <p>Preço: R$ 80,00</p>
+        <button onclick="adicionarAoCarrinho('Espaguete Carbonara', 80)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <h2>Farfalle da Casa</h2>
+        <p>Preço: R$ 75,00</p>
+        <button onclick="adicionarAoCarrinho('Farfalle da Casa', 75)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <h2>Ravioli Prime</h2>
+        <p>Preço: R$ 65,00</p>
+        <button onclick="adicionarAoCarrinho('Ravioli Prime', 65)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <h2>Fusilli de Salmão Grelhado</h2>
+        <p>Preço: R$ 90,00</p>
+        <button onclick="adicionarAoCarrinho('Fusilli de Salmão Grelhado', 90)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <h2>Tagliatelle Italiana</h2>
+        <p>Preço: R$ 85,00</p>
+        <button onclick="adicionarAoCarrinho('Tagliatelle Italiana', 85)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <h2>Capellini com Prosciutto</h2>
+        <p>Preço: R$ 55,00</p>
+        <button onclick="adicionarAoCarrinho('Capellini com Prosciutto', 55)">Adicionar ao Carrinho</button>
+    </div>
+    <div class="produto">
+        <h2>Macaroni Cheddar</h2>
+        <p>Preço: R$ 80,00</p>
+        <button onclick="adicionarAoCarrinho('Macaroni Cheddar', 80)">Adicionar ao Carrinho</button>
+    </div>
+</section>
 
 </body>
 </html>
