@@ -64,6 +64,7 @@
     <h2>Carrinho</h2>
     <ul id="itensCarrinho"></ul>
     <p class="total" id="total">Total: R$ 0,00</p>
+    <p id="tempoPreparo">Tempo de preparo: 60 minutos</p>
     <button onclick="finalizarPedido()">Finalizar Pedido</button>
     <p class="mensagem" id="mensagem"></p>
 </div>
@@ -83,8 +84,10 @@
 
     function finalizarPedido() {
         const mensagem = document.getElementById('mensagem');
+        const tempoEstimado = 60; // Tempo fixo de 1 hora
+        
         if (total > 0) {
-            mensagem.textContent = `Pedido finalizado com sucesso! Total: R$ ${total.toFixed(2)}. Agradecemos pela sua preferência.`;
+            mensagem.textContent = `Pedido finalizado com sucesso! Total: R$ ${total.toFixed(2)}. Tempo estimado para preparo: ${tempoEstimado} minutos. Agradecemos pela sua preferência.`;
             // Limpar o carrinho
             document.getElementById('itensCarrinho').innerHTML = '';
             total = 0;
