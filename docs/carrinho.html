@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #107333;
+            background-color: #f8f4eb;
             color: #333;
             margin: 20px;
         }
@@ -32,7 +32,7 @@
             margin-top: 20px;
         }
         button {
-            background-color: rgb(255, 0, 0);
+            background-color: #27ae60;
             color: #fff;
             border: none;
             padding: 10px 15px;
@@ -47,6 +47,12 @@
             font-weight: bold;
             font-size: 1.2em;
             color: #c0392b;
+        }
+        .mensagem {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #27ae60;
+            text-align: center;
         }
     </style>
 </head>
@@ -76,6 +82,8 @@
     <h2>Carrinho</h2>
     <ul id="itensCarrinho"></ul>
     <p class="total" id="total">Total: R$ 0,00</p>
+    <button onclick="finalizarPedido()">Finalizar Pedido</button>
+    <p class="mensagem" id="mensagem"></p>
 </div>
 
 <script>
@@ -89,6 +97,19 @@
 
         total += preco;
         document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+    }
+
+    function finalizarPedido() {
+        const mensagem = document.getElementById('mensagem');
+        if (total > 0) {
+            mensagem.textContent = `Pedido finalizado com sucesso! Total: R$ ${total.toFixed(2)}. Agradecemos pela sua preferência.`;
+            // Limpar o carrinho
+            document.getElementById('itensCarrinho').innerHTML = '';
+            total = 0;
+            document.getElementById('total').textContent = `Total: R$ 0,00`;
+        } else {
+            mensagem.textContent = "Seu carrinho está vazio. Adicione itens para finalizar o pedido.";
+        }
     }
 </script>
 
