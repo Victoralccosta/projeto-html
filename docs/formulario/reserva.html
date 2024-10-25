@@ -7,54 +7,75 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
     <title>Restaurante La Tavola</title>
-</head>
-    <header>
-            <div class="content">
-                <div class="logo">
-                    <img src="logotavolaoficial.png" alt="La Tavola">
-                
-     </header>       
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #107333; /* Fundo verde */
+            color: #000; /* Texto preto */
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgb(255, 0, 0); /* Vermelho */
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+        }
+        h1 {
+            color: #000; /* Preto */
+            text-align: center;
         }
         label {
             display: block;
             margin: 10px 0 5px;
+            color: #000; /* Preto */
         }
         input, select, textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         input[type="submit"] {
             width: auto;
-            background-color: #4CAF50;
+            background-color: rgb(255, 0, 0); /* Vermelho */
             color: white;
             border: none;
             cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #c70000; /* Vermelho escuro */
         }
     </style>
 </head>
 <body>
-    <h1>Formulário de Reserva LA TAVOLA</h1>
+    <header>
+        <div class="logo">
+            <img src="logotavolaoficial.png" alt="La Tavola">
+        </div>
+    </header>       
+    <h1>Formulário de Reserva - LA TAVOLA</h1>
     <form action="/reservar" method="post">
-        <label for="nombre"> Nome:</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
 
-        <label for="email"> Email para contato:</label>
+        <label for="email">Email para contato:</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="Telefone">Telefone:</label>
-        <input type="tel" id="telefono" name="telefono" required>
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required>
 
         <label for="personas">Número de Pessoas:</label>
         <select id="personas" name="personas" required>
-            <option value="">Selecciona</option>
+            <option value="">Selecione</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -67,8 +88,8 @@
             <option value="10">10</option>
         </select>
 
-        <label for="fecha">Fechamento de Reserva:</label>
-        <input type="date" id="fecha" name="fecha" required>
+        <label for="data">Data de Reserva:</label>
+        <input type="date" id="data" name="data" required>
 
         <label for="hora">Horário de Reserva:</label>
         <input type="time" id="hora" name="hora" required>
