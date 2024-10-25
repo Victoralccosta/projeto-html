@@ -31,20 +31,42 @@
                 </div>
 
             </div>
-        
-    </header>
+</head>
+<body>
 
-    <section class="first-section" id="home">
-        
-        <div class="conteudo-principal">
-            <h1>RESTAURANTE LA TAVOLA</h1>
-            <h2>OS MELHORES MACARRÕES VOCÊ SÓ ENCONTRA AQUI!!</h2>
-            <div class="btn">
-                <button class="reservar">Faça sua reservas aqui</button>
-            </div>
-        </div>    
-    </section>
-    <script src="./script.js"></script>   
+<h1>Carrinho de Compras</h1>
+
+<div class="produto">
+    <h2>Produto 1</h2>
+    <p>Preço: R$ 10,00</p>
+    <button onclick="adicionarAoCarrinho('Produto 1', 10)">Adicionar ao Carrinho</button>
+</div>
+
+<div class="produto">
+    <h2>Produto 2</h2>
+    <p>Preço: R$ 20,00</p>
+    <button onclick="adicionarAoCarrinho('Produto 2', 20)">Adicionar ao Carrinho</button>
+</div>
+
+<div class="carrinho">
+    <h2>Carrinho</h2>
+    <ul id="itensCarrinho"></ul>
+    <p class="total" id="total">Total: R$ 0,00</p>
+</div>
+
+<script>
+    let total = 0;
+
+    function adicionarAoCarrinho(nome, preco) {
+        const itensCarrinho = document.getElementById('itensCarrinho');
+        const item = document.createElement('li');
+        item.textContent = `${nome} - R$ ${preco.toFixed(2)}`;
+        itensCarrinho.appendChild(item);
+
+        total += preco;
+        document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+    }
+</script>
+
 </body>
-
 </html>
