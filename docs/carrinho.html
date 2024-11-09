@@ -8,7 +8,6 @@
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
     <title>La Tavola - Carrinho de Compras</title>
     <style>
-        /* Cor de fundo e fonte do corpo */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #F1F1F1;
@@ -18,15 +17,13 @@
             line-height: 1.6;
         }
 
-        /* Estilo do título principal */
         h1 {
             text-align: center;
             color: #008C45;
-            margin-top: 80px; /* Maior margem para espaçamento */
-            font-size: 36px; /* Aumento do tamanho da fonte */
+            margin-top: 80px;
+            font-size: 36px;
         }
 
-        /* Estilo do cabeçalho */
         header {
             background-color: #333;
             padding: 15px 0;
@@ -34,7 +31,7 @@
             position: sticky;
             top: 0;
             width: 100%;
-            z-index: 1000; /* Garantir que o cabeçalho fique sempre visível */
+            z-index: 1000;
         }
 
         header .content {
@@ -47,7 +44,7 @@
         }
 
         header .logo img {
-            width: 180px; /* Logo maior */
+            width: 180px;
         }
 
         header .list-menu {
@@ -57,7 +54,7 @@
         }
 
         header .list-menu li {
-            margin-left: 25px; /* Espaçamento maior entre os itens */
+            margin-left: 25px;
         }
 
         header .list-menu li a {
@@ -68,7 +65,7 @@
         }
 
         header .list-menu li a:hover {
-            color: #F1C40F; /* Cor de hover mais atraente */
+            color: #F1C40F;
             text-decoration: underline;
         }
 
@@ -76,7 +73,6 @@
             display: none;
         }
 
-        /* Estilo dos itens no carrinho */
         .produto {
             border: 1px solid #ccc;
             background-color: #FFFFFF;
@@ -92,7 +88,6 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Estilo da seção do carrinho */
         .carrinho {
             border: 1px solid #008C45;
             background-color: #FFFFFF;
@@ -104,7 +99,6 @@
             margin: 0 auto;
         }
 
-        /* Estilo dos botões */
         button {
             background-color: #008C45;
             color: #fff;
@@ -121,17 +115,15 @@
         button:hover {
             background-color: #005F3B;
             border-color: #005F3B;
-            transform: scale(1.05); /* Efeito de zoom */
+            transform: scale(1.05);
         }
 
-        /* Estilo da informação total do carrinho */
         .total {
             font-weight: bold;
             font-size: 1.5em;
             color: #F44336;
         }
 
-        /* Estilo da mensagem de confirmação */
         .mensagem {
             margin-top: 20px;
             font-weight: bold;
@@ -139,7 +131,6 @@
             text-align: center;
         }
 
-        /* Estilo do botão remover */
         .remover {
             background-color: #F44336;
             color: white;
@@ -156,13 +147,11 @@
             background-color: #D32F2F;
         }
 
-        /* Estilo de links de navegação */
         header .list-menu li a {
             font-size: 18px;
             text-transform: uppercase;
         }
 
-        /* Responsividade e ajuste de layout */
         @media (max-width: 768px) {
             header .content {
                 flex-direction: column;
@@ -180,7 +169,7 @@
             }
 
             h1 {
-                font-size: 30px; /* Ajuste de tamanho para telas menores */
+                font-size: 30px;
             }
         }
     </style>
@@ -216,7 +205,7 @@
     <p class="mensagem" id="mensagem"></p>
 </div>
 
-<!-- Aqui será carregado o cardápio dinamicamente -->
+<!-- Cardápio -->
 <div id="cardapio"></div>
 
 <script>
@@ -224,7 +213,7 @@
     let tempoPreparoTotal = 0;
     let carrinho = [];
 
-    // Função para adicionar item ao carrinho com o tempo de preparo ajustado
+    // Função para adicionar item ao carrinho
     function adicionarAoCarrinho(nome, preco, tempoPreparo) {
         const item = { nome, preco, tempoPreparo };
         carrinho.push(item);
@@ -233,14 +222,14 @@
         const itensCarrinho = document.getElementById('itensCarrinho');
         const itemElement = document.createElement('li');
         itemElement.textContent = `${nome} - R$ ${preco.toFixed(2)} | Tempo de preparo: ${tempoPreparo} minutos`;
-        
+
         // Adicionando o botão de remoção
         const removerButton = document.createElement('button');
         removerButton.textContent = 'Remover';
         removerButton.classList.add('remover');
         removerButton.onclick = () => removerDoCarrinho(item, itemElement);
         itemElement.appendChild(removerButton);
-        
+
         itensCarrinho.appendChild(itemElement);
 
         total += preco;
@@ -250,14 +239,10 @@
 
     // Função para remover item do carrinho
     function removerDoCarrinho(item, itemElement) {
-        // Atualizando os totais
         total -= item.preco;
         tempoPreparoTotal -= item.tempoPreparo;
 
-        // Removendo o item da interface
         itemElement.remove();
-
-        // Atualizando os valores de total e tempo
         atualizarResumo();
     }
 
@@ -272,11 +257,17 @@
         document.getElementById('mensagem').textContent = 'Pedido Finalizado com sucesso!';
     }
 
-    // Exemplo de produtos no cardápio
+    // Cardápio com todos os itens
     const produtos = {
-        "Macarrão à Bolonhesa": { preco: 79, tempo: 30 },
-        "Penne ao Molho Branco": { preco: 65, tempo: 25 },
-        "Espaguete Carbonara": { preco: 80, tempo: 40 }
+        "Macarrão à Bolonhesa": { preco: 79.00, tempo: 30 },
+        "Penne ao Molho Branco": { preco: 65.00, tempo: 25 },
+        "Espaguete Carbonara": { preco: 80.00, tempo: 40 },
+        "Farfalle da Casa": { preco: 75.00, tempo: 35 },
+        "Ravioli Prime": { preco: 65.00, tempo: 30 },
+        "Fusilli de Salmão Grelhado": { preco: 90.00, tempo: 45 },
+        "Tagliatelle Italiana": { preco: 85.00, tempo: 50 },
+        "Capellini com Prosciutto": { preco: 55.00, tempo: 25 },
+        "Macaroni Cheddar": { preco: 80.00, tempo: 20 }
     };
 
     // Renderizando os produtos no cardápio
@@ -293,6 +284,5 @@
         cardapio.appendChild(produto);
     }
 </script>
-
 </body>
 </html>
