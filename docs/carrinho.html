@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
-    <title>La Távola - Carrinho de Compras</title>
+    <title>La Tavola - Carrinho de Compras</title>
     <style>
         /* Cor de fundo e fonte do corpo */
         body {
@@ -15,19 +15,21 @@
             color: #333;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         /* Estilo do título principal */
         h1 {
             text-align: center;
             color: #008C45;
-            margin-top: 60px; /* Garantir que não fique colado no topo */
+            margin-top: 80px; /* Maior margem para espaçamento */
+            font-size: 36px; /* Aumento do tamanho da fonte */
         }
 
         /* Estilo do cabeçalho */
         header {
             background-color: #333;
-            padding: 10px 0;
+            padding: 15px 0;
             color: #fff;
             position: sticky;
             top: 0;
@@ -45,7 +47,7 @@
         }
 
         header .logo img {
-            width: 150px;
+            width: 180px; /* Logo maior */
         }
 
         header .list-menu {
@@ -55,16 +57,18 @@
         }
 
         header .list-menu li {
-            margin-left: 20px;
+            margin-left: 25px; /* Espaçamento maior entre os itens */
         }
 
         header .list-menu li a {
             color: #fff;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
+            transition: color 0.3s ease;
         }
 
         header .list-menu li a:hover {
+            color: #F1C40F; /* Cor de hover mais atraente */
             text-decoration: underline;
         }
 
@@ -76,20 +80,28 @@
         .produto {
             border: 1px solid #ccc;
             background-color: #FFFFFF;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .produto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Estilo da seção do carrinho */
         .carrinho {
             border: 1px solid #008C45;
             background-color: #FFFFFF;
-            padding: 15px;
+            padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         /* Estilo dos botões */
@@ -97,27 +109,31 @@
             background-color: #008C45;
             color: #fff;
             border: 2px solid #008C45;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 15px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            display: block;
+            margin: 20px auto 0;
         }
 
         button:hover {
             background-color: #005F3B;
             border-color: #005F3B;
+            transform: scale(1.05); /* Efeito de zoom */
         }
 
-        /* Estilo do total no carrinho */
+        /* Estilo da informação total do carrinho */
         .total {
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.5em;
             color: #F44336;
         }
 
         /* Estilo da mensagem de confirmação */
         .mensagem {
-            margin-top: 15px;
+            margin-top: 20px;
             font-weight: bold;
             color: #27ae60;
             text-align: center;
@@ -128,29 +144,44 @@
             background-color: #F44336;
             color: white;
             border: none;
-            padding: 5px 10px;
+            padding: 8px 15px;
             font-size: 0.9em;
             cursor: pointer;
             border-radius: 5px;
             margin-left: 10px;
+            transition: background-color 0.3s ease;
         }
 
         .remover:hover {
             background-color: #D32F2F;
         }
 
-        /* Estilo da seção do cardápio */
-        .produto {
-            background-color: #FAFAFA;
-        }
-
         /* Estilo de links de navegação */
         header .list-menu li a {
-            font-size: 16px;
+            font-size: 18px;
+            text-transform: uppercase;
         }
 
-        header .list-menu li a:hover {
-            text-decoration: underline;
+        /* Responsividade e ajuste de layout */
+        @media (max-width: 768px) {
+            header .content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header .list-menu {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 15px;
+            }
+
+            header .list-menu li {
+                margin: 10px 0;
+            }
+
+            h1 {
+                font-size: 30px; /* Ajuste de tamanho para telas menores */
+            }
         }
     </style>
 </head>
@@ -170,16 +201,11 @@
             <li><a href="formulario/reserva.html">Reserva</a></li>                  
             <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i></a></li>
         </ul>
-        <div class="menu-toggle">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-        </div>
     </div>
 </header>
 
 <!-- Carrinho de Compras -->
-<h1>La Távola - Carrinho de Compras</h1>
+<h1>La Tavola - Carrinho de Compras</h1>
 
 <div class="carrinho">
     <h2>Carrinho</h2>
@@ -228,15 +254,14 @@
         total -= item.preco;
         tempoPreparoTotal -= item.tempoPreparo;
 
-        // Removendo o item da lista de carrinho
-        carrinho = carrinho.filter(i => i !== item);
+        // Removendo o item da interface
         itemElement.remove();
 
-        // Atualizando o resumo
+        // Atualizando os valores de total e tempo
         atualizarResumo();
     }
 
-    // Função para atualizar o resumo (total e tempo de preparo)
+    // Função para atualizar os totais
     function atualizarResumo() {
         document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
         document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
