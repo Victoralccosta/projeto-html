@@ -55,6 +55,19 @@
             color: #27ae60;
             text-align: center;
         }
+        .remover {
+            background-color: #F44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .remover:hover {
+            background-color: #D32F2F;
+        }
     </style>
 </head>
 <body>
@@ -76,16 +89,48 @@
 <script>
     let total = 0;
     let tempoPreparoTotal = 0;
+    let carrinho = [];
 
     // Função para adicionar item ao carrinho com o tempo de preparo ajustado
     function adicionarAoCarrinho(nome, preco, tempoPreparo) {
+        const item = { nome, preco, tempoPreparo };
+        carrinho.push(item);
+
+        // Atualizando o carrinho na interface
         const itensCarrinho = document.getElementById('itensCarrinho');
-        const item = document.createElement('li');
-        item.textContent = `${nome} - R$ ${preco.toFixed(2)} | Tempo de preparo: ${tempoPreparo} minutos`;
-        itensCarrinho.appendChild(item);
+        const itemElement = document.createElement('li');
+        itemElement.textContent = `${nome} - R$ ${preco.toFixed(2)} | Tempo de preparo: ${tempoPreparo} minutos`;
+        
+        // Adicionando o botão de remoção
+        const removerButton = document.createElement('button');
+        removerButton.textContent = 'Remover';
+        removerButton.classList.add('remover');
+        removerButton.onclick = () => removerDoCarrinho(item, itemElement);
+        itemElement.appendChild(removerButton);
+        
+        itensCarrinho.appendChild(itemElement);
 
         total += preco;
         tempoPreparoTotal += tempoPreparo;
+        atualizarResumo();
+    }
+
+    // Função para remover item do carrinho
+    function removerDoCarrinho(item, itemElement) {
+        // Atualizando os totais
+        total -= item.preco;
+        tempoPreparoTotal -= item.tempoPreparo;
+
+        // Removendo o item da lista de carrinho
+        carrinho = carrinho.filter(i => i !== item);
+        itemElement.remove();
+
+        // Atualizando o resumo
+        atualizarResumo();
+    }
+
+    // Função para atualizar o resumo (total e tempo de preparo)
+    function atualizarResumo() {
         document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
         document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
     }
@@ -97,11 +142,11 @@
         if (total > 0) {
             mensagem.textContent = `Pedido finalizado com sucesso! Total: R$ ${total.toFixed(2)}. Tempo estimado para preparo: ${tempoPreparoTotal} minutos. Agradecemos pela sua preferência.`;
             // Limpar o carrinho
+            carrinho = [];
             document.getElementById('itensCarrinho').innerHTML = '';
             total = 0;
             tempoPreparoTotal = 0;
-            document.getElementById('total').textContent = `Total: R$ 0,00`;
-            document.getElementById('tempoPreparo').textContent = `Tempo de preparo: 0 minutos`;
+            atualizarResumo();
         } else {
             mensagem.textContent = "Seu carrinho está vazio. Adicione itens para finalizar o pedido.";
         }
