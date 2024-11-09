@@ -13,13 +13,15 @@
             font-family: 'Arial', sans-serif;
             background-color: #F1F1F1;
             color: #333;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
         }
 
         /* Estilo do título principal */
         h1 {
             text-align: center;
             color: #008C45;
+            margin-top: 60px; /* Garantir que não fique colado no topo */
         }
 
         /* Estilo do cabeçalho */
@@ -27,7 +29,12 @@
             background-color: #333;
             padding: 10px 0;
             color: #fff;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Garantir que o cabeçalho fique sempre visível */
         }
+
         header .content {
             display: flex;
             justify-content: space-between;
@@ -36,25 +43,31 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+
         header .logo img {
             width: 150px;
         }
+
         header .list-menu {
             list-style: none;
             display: flex;
             margin: 0;
         }
+
         header .list-menu li {
             margin-left: 20px;
         }
+
         header .list-menu li a {
             color: #fff;
             text-decoration: none;
             font-size: 16px;
         }
+
         header .list-menu li a:hover {
             text-decoration: underline;
         }
+
         header .menu-toggle {
             display: none;
         }
@@ -89,6 +102,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         button:hover {
             background-color: #005F3B;
             border-color: #005F3B;
@@ -230,43 +244,26 @@
 
     // Função para finalizar o pedido
     function finalizarPedido() {
-        const mensagem = document.getElementById('mensagem');
-        
-        if (total > 0) {
-            mensagem.textContent = `Pedido finalizado com sucesso! Total: R$ ${total.toFixed(2)}. Tempo estimado para preparo: ${tempoPreparoTotal} minutos. Agradecemos pela sua preferência.`;
-            // Limpar o carrinho
-            carrinho = [];
-            document.getElementById('itensCarrinho').innerHTML = '';
-            total = 0;
-            tempoPreparoTotal = 0;
-            atualizarResumo();
-        } else {
-            mensagem.textContent = "Seu carrinho está vazio. Adicione itens para finalizar o pedido.";
-        }
+        document.getElementById('mensagem').textContent = 'Pedido Finalizado com sucesso!';
     }
 
-    // Adicionando produtos ao cardápio com tempo de preparo
-    const pratos = {
-        "Macarrão à Bolonhesa": { preco: 79, tempo: 45 },
-        "Macarrão Penne": { preco: 65, tempo: 20 },
-        "Espaguete Carbonara": { preco: 80, tempo: 30 },
-        "Farfalle da Casa": { preco: 75, tempo: 25 },
-        "Ravioli Prime": { preco: 65, tempo: 35 },
-        "Fusilli de Salmão Grelhado": { preco: 90, tempo: 50 },
-        "Tagliatelle Italiana": { preco: 85, tempo: 40 },
-        "Capellini com Prosciutto": { preco: 55, tempo: 20 },
-        "Macaroni Cheddar": { preco: 80, tempo: 15 },
+    // Exemplo de produtos no cardápio
+    const produtos = {
+        "Macarrão à Bolonhesa": { preco: 79, tempo: 30 },
+        "Penne ao Molho Branco": { preco: 65, tempo: 25 },
+        "Espaguete Carbonara": { preco: 80, tempo: 40 }
     };
 
+    // Renderizando os produtos no cardápio
     const cardapio = document.getElementById('cardapio');
-    for (let prato in pratos) {
+    for (let prato in produtos) {
         const produto = document.createElement('div');
         produto.classList.add('produto');
         produto.innerHTML = `
             <h3>${prato}</h3>
-            <p>Preço: R$ ${pratos[prato].preco}</p>
-            <p>Tempo de preparo: ${pratos[prato].tempo} minutos</p>
-            <button onclick="adicionarAoCarrinho('${prato}', ${pratos[prato].preco}, ${pratos[prato].tempo})">Adicionar ao carrinho</button>
+            <p>Preço: R$ ${produtos[prato].preco}</p>
+            <p>Tempo de preparo: ${produtos[prato].tempo} minutos</p>
+            <button onclick="adicionarAoCarrinho('${prato}', ${produtos[prato].preco}, ${produtos[prato].tempo})">Adicionar ao carrinho</button>
         `;
         cardapio.appendChild(produto);
     }
