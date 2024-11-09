@@ -10,28 +10,21 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #F1F1F1;
-            color: #333;
+            background-color: #f8f8f8;
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
 
-        h1 {
-            text-align: center;
-            color: #008C45;
-            margin-top: 80px;
-            font-size: 36px;
-        }
-
+        /* Cabeçalho */
         header {
             background-color: #333;
             padding: 15px 0;
-            color: #fff;
             position: sticky;
             top: 0;
             width: 100%;
             z-index: 1000;
+            transition: all 0.3s ease-in-out;
         }
 
         header .content {
@@ -45,8 +38,14 @@
 
         header .logo img {
             width: 180px;
+            transition: transform 0.3s ease;
         }
 
+        header .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Menu */
         header .list-menu {
             list-style: none;
             display: flex;
@@ -55,48 +54,89 @@
 
         header .list-menu li {
             margin-left: 25px;
+            position: relative;
         }
 
         header .list-menu li a {
             color: #fff;
             text-decoration: none;
             font-size: 18px;
-            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: color 0.3s ease, padding 0.3s ease;
         }
 
         header .list-menu li a:hover {
-            color: #F1C40F;
-            text-decoration: underline;
+            color: #f1c40f;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #f1c40f;
         }
 
-        header .menu-toggle {
+        header .list-menu li a i {
+            margin-right: 8px;
+        }
+
+        /* Botão do menu em dispositivos móveis */
+        .menu-toggle {
             display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
         }
 
-        .produto {
-            border: 1px solid #ccc;
-            background-color: #FFFFFF;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .menu-toggle div {
+            background-color: #fff;
+            height: 4px;
+            width: 100%;
+            border-radius: 10px;
         }
 
-        .produto:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header .content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header .list-menu {
+                display: none;
+                flex-direction: column;
+                margin-top: 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            header .list-menu li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            header .list-menu.active {
+                display: flex;
+            }
         }
 
+        /* Estilo da área do carrinho */
         .carrinho {
-            border: 1px solid #008C45;
-            background-color: #FFFFFF;
+            background-color: #fff;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-top: 40px;
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #008C45;
+            margin-top: 80px;
         }
 
         button {
@@ -118,19 +158,6 @@
             transform: scale(1.05);
         }
 
-        .total {
-            font-weight: bold;
-            font-size: 1.5em;
-            color: #F44336;
-        }
-
-        .mensagem {
-            margin-top: 20px;
-            font-weight: bold;
-            color: #27ae60;
-            text-align: center;
-        }
-
         .remover {
             background-color: #F44336;
             color: white;
@@ -147,30 +174,10 @@
             background-color: #D32F2F;
         }
 
-        header .list-menu li a {
-            font-size: 18px;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 768px) {
-            header .content {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            header .list-menu {
-                flex-direction: column;
-                align-items: center;
-                margin-top: 15px;
-            }
-
-            header .list-menu li {
-                margin: 10px 0;
-            }
-
-            h1 {
-                font-size: 30px;
-            }
+        .total {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #F44336;
         }
     </style>
 </head>
@@ -188,8 +195,15 @@
             <li><a href="#cardapio">Cardápio</a></li>
             <li><a href="#contatos">Contatos</a></li> 
             <li><a href="formulario/reserva.html">Reserva</a></li>                  
-            <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i></a></li>
+            <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i>Carrinho</a></li>
         </ul>
+
+        <!-- Menu Toggle (para dispositivos móveis) -->
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 </header>
 
@@ -209,11 +223,16 @@
 <div id="cardapio"></div>
 
 <script>
+    // Função para ativar e desativar o menu mobile
+    function toggleMenu() {
+        document.querySelector('.list-menu').classList.toggle('active');
+    }
+
+    // Outras funções do carrinho e cardápio
     let total = 0;
     let tempoPreparoTotal = 0;
     let carrinho = [];
 
-    // Função para adicionar item ao carrinho
     function adicionarAoCarrinho(nome, preco, tempoPreparo) {
         const item = { nome, preco, tempoPreparo };
         carrinho.push(item);
@@ -237,7 +256,6 @@
         atualizarResumo();
     }
 
-    // Função para remover item do carrinho
     function removerDoCarrinho(item, itemElement) {
         total -= item.preco;
         tempoPreparoTotal -= item.tempoPreparo;
@@ -246,23 +264,20 @@
         atualizarResumo();
     }
 
-    // Função para atualizar os totais
     function atualizarResumo() {
         document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
         document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
     }
 
-    // Função para finalizar o pedido
     function finalizarPedido() {
         document.getElementById('mensagem').textContent = 'Pedido Finalizado com sucesso!';
     }
 
-    // Cardápio com todos os itens
     const produtos = {
         "Macarrão à Bolonhesa": { preco: 79.00, tempo: 30 },
-        "Penne ao Molho Branco": { preco: 65.00, tempo: 25 },
-        "Espaguete Carbonara": { preco: 80.00, tempo: 40 },
-        "Farfalle da Casa": { preco: 75.00, tempo: 35 },
+        "Macarrão Penne": { preco: 65.00, tempo: 30 },
+        "Espaguete Carbonara": { preco: 80.00, tempo: 35 },
+        "Farfalle da Casa": { preco: 75.00, tempo: 40 },
         "Ravioli Prime": { preco: 65.00, tempo: 30 },
         "Fusilli de Salmão Grelhado": { preco: 90.00, tempo: 45 },
         "Tagliatelle Italiana": { preco: 85.00, tempo: 50 },
