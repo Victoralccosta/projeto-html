@@ -7,46 +7,47 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f4eb;
+            background-color: #F1F1F1;
             color: #333;
             margin: 20px;
         }
         h1 {
             text-align: center;
-            color: #c0392b;
+            color: #008C45;
         }
         .produto {
             border: 1px solid #ccc;
-            background-color: #fff;
+            background-color: #FFFFFF;
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         .carrinho {
-            border: 1px solid #c0392b;
-            background-color: #fff;
+            border: 1px solid #008C45;
+            background-color: #FFFFFF;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
         button {
-            background-color: #27ae60;
-            color: #fff;
-            border: none;
+            background-color: #F1F1F1;
+            color: #008C45;
+            border: 2px solid #008C45;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #219150;
+            background-color: #008C45;
+            color: #FFFFFF;
         }
         .total {
             font-weight: bold;
             font-size: 1.2em;
-            color: #c0392b;
+            color: #F44336;
         }
         .mensagem {
             margin-top: 15px;
@@ -64,88 +65,74 @@
     <h2>Carrinho</h2>
     <ul id="itensCarrinho"></ul>
     <p class="total" id="total">Total: R$ 0,00</p>
-    <p id="tempoPreparo">Tempo de preparo: 60 minutos</p>
+    <p id="tempoPreparo">Tempo de preparo: 0 minutos</p>
     <button onclick="finalizarPedido()">Finalizar Pedido</button>
     <p class="mensagem" id="mensagem"></p>
 </div>
 
+<!-- Aqui será carregado o cardápio dinamicamente -->
+<div id="cardapio"></div>
+
 <script>
     let total = 0;
+    let tempoPreparoTotal = 0;
 
-    function adicionarAoCarrinho(nome, preco) {
+    // Função para adicionar item ao carrinho com o tempo de preparo ajustado
+    function adicionarAoCarrinho(nome, preco, tempoPreparo) {
         const itensCarrinho = document.getElementById('itensCarrinho');
         const item = document.createElement('li');
-        item.textContent = `${nome} - R$ ${preco.toFixed(2)}`;
+        item.textContent = `${nome} - R$ ${preco.toFixed(2)} | Tempo de preparo: ${tempoPreparo} minutos`;
         itensCarrinho.appendChild(item);
 
         total += preco;
+        tempoPreparoTotal += tempoPreparo;
         document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+        document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
     }
 
+    // Função para finalizar o pedido
     function finalizarPedido() {
         const mensagem = document.getElementById('mensagem');
-        const tempoEstimado = 60; // Tempo fixo de 1 hora
         
         if (total > 0) {
-            mensagem.textContent = `Pedido finalizado com sucesso! Total: R$ ${total.toFixed(2)}. Tempo estimado para preparo: ${tempoEstimado} minutos. Agradecemos pela sua preferência.`;
+            mensagem.textContent = `Pedido finalizado com sucesso! Total: R$ ${total.toFixed(2)}. Tempo estimado para preparo: ${tempoPreparoTotal} minutos. Agradecemos pela sua preferência.`;
             // Limpar o carrinho
             document.getElementById('itensCarrinho').innerHTML = '';
             total = 0;
+            tempoPreparoTotal = 0;
             document.getElementById('total').textContent = `Total: R$ 0,00`;
+            document.getElementById('tempoPreparo').textContent = `Tempo de preparo: 0 minutos`;
         } else {
             mensagem.textContent = "Seu carrinho está vazio. Adicione itens para finalizar o pedido.";
         }
     }
-</script>
 
-<!-- O código abaixo é o do cardápio, onde os itens chamam a função adicionarAoCarrinho -->
-<section class="cardapio" id="cardapio">
-    <div class="produto">
-        <h2>Macarrão à Bolonhesa</h2>
-        <p>Preço: R$ 79,00</p>
-        <button onclick="adicionarAoCarrinho('Macarrão à Bolonhesa', 79)">Adicionar ao Carrinho</button>
-    </div>
-    <div class="produto">
-        <h2>Macarrão Penne</h2>
-        <p>Preço: R$ 65,00</p>
-        <button onclick="adicionarAoCarrinho('Macarrão Penne', 65)">Adicionar ao Carrinho</button>
-    </div>
-    <div class="produto">
-        <h2>Espaguete Carbonara</h2>
-        <p>Preço: R$ 80,00</p>
-        <button onclick="adicionarAoCarrinho('Espaguete Carbonara', 80)">Adicionar ao Carrinho</button>
-    </div>
-    <div class="produto">
-        <h2>Farfalle da Casa</h2>
-        <p>Preço: R$ 75,00</p>
-        <button onclick="adicionarAoCarrinho('Farfalle da Casa', 75)">Adicionar ao Carrinho</button>
-    </div>
-    <div class="produto">
-        <h2>Ravioli Prime</h2>
-        <p>Preço: R$ 65,00</p>
-        <button onclick="adicionarAoCarrinho('Ravioli Prime', 65)">Adicionar ao Carrinho</button>
-    </div>
-    <div class="produto">
-        <h2>Fusilli de Salmão Grelhado</h2>
-        <p>Preço: R$ 90,00</p>
-        <button onclick="adicionarAoCarrinho('Fusilli de Salmão Grelhado', 90)">Adicionar ao Carrinho</button>
-    </div>
-    <div class="produto">
-        <h2>Tagliatelle Italiana</h2>
-        <p>Preço: R$ 85,00</p>
-        <button onclick="adicionarAoCarrinho('Tagliatelle Italiana', 85)">Adicionar ao Carrinho</button>
-    </div>
-    <div class="produto">
-        <h2>Capellini com Prosciutto</h2>
-        <p>Preço: R$ 55,00</p>
-        <button onclick="adicionarAoCarrinho('Capellini com Prosciutto', 55)">Adicionar ao Carrinho</button>
-    </div>
-    <div class="produto">
-        <h2>Macaroni Cheddar</h2>
-        <p>Preço: R$ 80,00</p>
-        <button onclick="adicionarAoCarrinho('Macaroni Cheddar', 80)">Adicionar ao Carrinho</button>
-    </div>
-</section>
+    // Adicionando produtos ao cardápio com tempo de preparo
+    const pratos = {
+        "Macarrão à Bolonhesa": { preco: 79, tempo: 45 },
+        "Macarrão Penne": { preco: 65, tempo: 20 },
+        "Espaguete Carbonara": { preco: 80, tempo: 30 },
+        "Farfalle da Casa": { preco: 75, tempo: 40 },
+        "Ravioli Prime": { preco: 65, tempo: 25 },
+        "Fusilli de Salmão Grelhado": { preco: 90, tempo: 30 },
+        "Tagliatelle Italiana": { preco: 85, tempo: 30 },
+        "Capellini com Prosciutto": { preco: 55, tempo: 20 },
+        "Macaroni Cheddar": { preco: 80, tempo: 25 }
+    };
+    
+    // Adicionando os itens ao cardápio
+    const cardapio = document.getElementById('cardapio');
+    for (const prato in pratos) {
+        const produto = document.createElement('div');
+        produto.classList.add('produto');
+        produto.innerHTML = `
+            <h2>${prato}</h2>
+            <p>Preço: R$ ${pratos[prato].preco}</p>
+            <button onclick="adicionarAoCarrinho('${prato}', ${pratos[prato].preco}, ${pratos[prato].tempo})">Adicionar ao Carrinho</button>
+        `;
+        cardapio.appendChild(produto);
+    }
+</script>
 
 </body>
 </html>
