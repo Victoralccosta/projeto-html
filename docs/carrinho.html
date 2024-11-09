@@ -6,36 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
-    <title>Restaurante La Tavola</title>
+    <title>La Tavola - Carrinho de Compras</title>
     <style>
-        /* Resetando margens e padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Corpo da página */
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
-            background-color: #f4f4f4;
-            margin-top: 80px; /* Deixa um espaço entre o cabeçalho fixo e o conteúdo */
+            padding-top: 80px; /* Ajuste para dar espaço ao cabeçalho fixo */
         }
 
-        /* Cabeçalho Sticky (fixo ao topo) */
+        /* Cabeçalho Fixado */
         header {
-            position: sticky;  /* Faz o cabeçalho ficar fixo quando rolar */
-            top: 0;  /* Fica fixo no topo da página */
+            position: fixed; /* Cabeçalho fixo no topo */
+            top: 0;
             left: 0;
             width: 100%;
-            background-color: #333;
+            background-color: #333; /* Cor de fundo do cabeçalho */
             padding: 15px 0;
-            z-index: 1000;
+            z-index: 1000; /* Fica acima de outros elementos */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
         }
 
-        /* Container do cabeçalho */
         header .content {
             display: flex;
             justify-content: space-between;
@@ -45,7 +39,6 @@
             padding: 0 20px;
         }
 
-        /* Logo */
         header .logo img {
             width: 180px;
             transition: transform 0.3s ease;
@@ -55,12 +48,11 @@
             transform: scale(1.1);
         }
 
-        /* Menu Principal */
+        /* Menu */
         header .list-menu {
             list-style: none;
             display: flex;
             margin: 0;
-            padding: 0;
         }
 
         header .list-menu li {
@@ -83,7 +75,11 @@
             border-bottom: 2px solid #f1c40f;
         }
 
-        /* Menu Toggle para dispositivos móveis */
+        header .list-menu li a i {
+            margin-right: 8px;
+        }
+
+        /* Botão do menu em dispositivos móveis */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -128,105 +124,96 @@
             }
         }
 
-        /* Estilo do Conteúdo Principal */
-        .content-principal {
+        /* Estilo da área do carrinho */
+        .carrinho {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
             text-align: center;
-            margin-top: 120px;
-        }
-
-        .content-principal h1 {
-            font-size: 48px;
+            font-size: 36px;
             color: #008C45;
+            margin-top: 80px;
         }
 
-        .content-principal h2 {
+        h2 {
+            text-align: center;
             font-size: 24px;
             color: #333;
         }
 
-        .btn a {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #008C45;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .btn a:hover {
-            background-color: #005F3B;
-        }
-
-        /* Estilo para o cardápio */
-        .cardapio {
-            background-color: #fff;
-            padding: 30px 0;
-            text-align: center;
-        }
-
-        .itens-cardapio {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .item {
-            background-color: #f9f9f9;
+        .produto {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            width: 250px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f8f8f8;
         }
 
-        .item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .item img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .item h3 {
-            font-size: 20px;
-            margin-top: 15px;
-            color: #333;
-        }
-
-        .item p {
-            font-size: 16px;
-            color: #666;
-            margin-top: 10px;
-        }
-
-        .item h4 {
-            font-size: 18px;
+        .produto h3 {
+            font-size: 22px;
             color: #008C45;
-            margin-top: 10px;
+            margin: 10px 0;
         }
 
-        .adicionar-carrinho {
-            margin-top: 15px;
-            padding: 10px 20px;
+        .produto p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        button {
             background-color: #008C45;
-            color: white;
-            border: none;
+            color: #fff;
+            border: 2px solid #008C45;
+            padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        button:hover {
+            background-color: #005F3B;
+            border-color: #005F3B;
+            transform: scale(1.05);
+        }
+
+        .remover {
+            background-color: #F44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
             transition: background-color 0.3s ease;
         }
 
-        .adicionar-carrinho:hover {
-            background-color: #005F3B;
+        .remover:hover {
+            background-color: #D32F2F;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #F44336;
+        }
+
+        #mensagem {
+            font-size: 20px;
+            color: #008C45;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -243,11 +230,11 @@
             <li><a href="#sobrenos">Sobre nós</a></li>
             <li><a href="#cardapio">Cardápio</a></li>
             <li><a href="#contatos">Contatos</a></li> 
-            <li><a href="formulario/reserva.html">Reserva</a></li>
-            <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i> Carrinho</a></li>
+            <li><a href="formulario/reserva.html">Reserva</a></li>                  
+            <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i>Carrinho</a></li>
         </ul>
 
-        <!-- Menu Toggle para dispositivos móveis -->
+        <!-- Menu Toggle (para dispositivos móveis) -->
         <div class="menu-toggle" onclick="toggleMenu()">
             <div></div>
             <div></div>
@@ -256,83 +243,95 @@
     </div>
 </header>
 
-<!-- Conteúdo Principal -->
-<section class="content-principal" id="home">
-    <h1>RESTAURANTE LA TAVOLA</h1>
-    <h2>OS MELHORES MACARRÕES VOCÊ SÓ ENCONTRA AQUI!</h2>
-    <div class="btn">
-        <a href="formulario/reserva.html">Faça sua reserva aqui</a>
-    </div>
-</section>
+<!-- Carrinho de Compras -->
+<h1>La Tavola - Carrinho de Compras</h1>
+
+<div class="carrinho">
+    <h2>Carrinho</h2>
+    <ul id="itensCarrinho"></ul>
+    <p class="total" id="total">Total: R$ 0,00</p>
+    <p id="tempoPreparo">Tempo de preparo: 0 minutos</p>
+    <button onclick="finalizarPedido()">Finalizar Pedido</button>
+    <p class="mensagem" id="mensagem"></p>
+</div>
 
 <!-- Cardápio -->
-<section class="cardapio" id="cardapio">
-    <h2>Cardápio</h2>
-    <div class="itens-cardapio">
-        <!-- Macarrão à Bolonhesa -->
-        <div class="item">
-            <img src="https://www.example.com/bolanhesa.jpg" alt="Macarrão à Bolonhesa">
-            <h3>Macarrão à Bolonhesa</h3>
-            <p>Prato saboroso com molho de tomate e carne moída. Buon appetito!</p>
-            <h4>R$79,00</h4>
-            <button class="adicionar-carrinho" onclick="adicionarCarrinho('Macarrão à Bolonhesa', 79)">Adicionar ao Carrinho</button>
-        </div>
-
-        <!-- Macarrão Penne -->
-        <div class="item">
-            <img src="https://www.example.com/penne.jpg" alt="Macarrão Penne">
-            <h3>Macarrão Penne</h3>
-            <p>Molho branco cremoso com queijo parmesão. Buon appetito!</p>
-            <h4>R$65,00</h4>
-            <button class="adicionar-carrinho" onclick="adicionarCarrinho('Macarrão Penne', 65)">Adicionar ao Carrinho</button>
-        </div>
-
-        <!-- Espaguete Carbonara -->
-        <div class="item">
-            <img src="https://www.example.com/carbonara.jpg" alt="Espaguete Carbonara">
-            <h3>Espaguete Carbonara</h3>
-            <p>Com pancetta crocante e molho cremoso de queijo. Buon appetito!</p>
-            <h4>R$80,00</h4>
-            <button class="adicionar-carrinho" onclick="adicionarCarrinho('Espaguete Carbonara', 80)">Adicionar ao Carrinho</button>
-        </div>
-
-        <!-- Farfalle da Casa -->
-        <div class="item">
-            <img src="https://www.example.com/farfalle.jpg" alt="Farfalle da Casa">
-            <h3>Farfalle da Casa</h3>
-            <p>Com molho branco cremoso e parmesão. Uma criação especial.</p>
-            <h4>R$75,00</h4>
-            <button class="adicionar-carrinho" onclick="adicionarCarrinho('Farfalle da Casa', 75)">Adicionar ao Carrinho</button>
-        </div>
-
-        <!-- Ravioli Prime -->
-        <div class="item">
-            <img src="https://www.example.com/ravioli.jpg" alt="Ravioli Prime">
-            <h3>Ravioli Prime</h3>
-            <p>Com recheio de espinafre e ricota. Buon appetito!</p>
-            <h4>R$65,00</h4>
-            <button class="adicionar-carrinho" onclick="adicionarCarrinho('Ravioli Prime', 65)">Adicionar ao Carrinho</button>
-        </div>
-
-        <!-- Fusilli de Salmão -->
-        <div class="item">
-            <img src="https://www.example.com/fusilli.jpg" alt="Fusilli de Salmão">
-            <h3>Fusilli de Salmão</h3>
-            <p>Com molho leve de limão e ervas. Sabor refrescante.</p>
-            <h4>R$90,00</h4>
-            <button class="adicionar-carrinho" onclick="adicionarCarrinho('Fusilli de Salmão', 90)">Adicionar ao Carrinho</button>
-        </div>
-    </div>
-</section>
+<div id="cardapio"></div>
 
 <script>
-// Adicionar item ao carrinho
-let carrinho = [];
+    // Função para ativar e desativar o menu mobile
+    function toggleMenu() {
+        document.querySelector('.list-menu').classList.toggle('active');
+    }
 
-function adicionarCarrinho(nome, preco) {
-    carrinho.push({ nome, preco });
-    alert(`${nome} adicionado ao carrinho!`);
-}
+    // Outras funções do carrinho e cardápio
+    let total = 0;
+    let tempoPreparoTotal = 0;
+    let carrinho = [];
+
+    function adicionarAoCarrinho(nome, preco, tempoPreparo) {
+        const item = { nome, preco, tempoPreparo };
+        carrinho.push(item);
+
+        // Atualizando o carrinho na interface
+        const itensCarrinho = document.getElementById('itensCarrinho');
+        const itemElement = document.createElement('li');
+        itemElement.textContent = `${nome} - R$ ${preco.toFixed(2)} - ${tempoPreparo} min`;
+        const botaoRemover = document.createElement('button');
+        botaoRemover.textContent = 'Remover';
+        botaoRemover.classList.add('remover');
+        botaoRemover.onclick = () => removerDoCarrinho(item, itemElement);
+        itemElement.appendChild(botaoRemover);
+        itensCarrinho.appendChild(itemElement);
+
+        total += preco;
+        tempoPreparoTotal += tempoPreparo;
+
+        document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+        document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
+    }
+
+    function removerDoCarrinho(item, itemElement) {
+        carrinho = carrinho.filter(c => c !== item);
+        itemElement.remove();
+
+        total -= item.preco;
+        tempoPreparoTotal -= item.tempoPreparo;
+
+        document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+        document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
+    }
+
+    function finalizarPedido() {
+        const mensagem = document.getElementById('mensagem');
+        mensagem.textContent = `Obrigado por seu pedido! Total: R$ ${total.toFixed(2)}. Seu pedido está sendo preparado e será entregue em ${tempoPreparoTotal} minutos.`;
+    }
+
+    // Renderizando o cardápio
+    const produtos = {
+        "Macarrão à Bolonhesa": { preco: 79.00, tempo: 40 },
+        "Macarrão Penne": { preco: 65.00, tempo: 30 },
+        "Espaguete Carbonara": { preco: 80.00, tempo: 35 },
+        "Farfalle da Casa": { preco: 75.00, tempo: 40 },
+        "Ravioli Prime": { preco: 65.00, tempo: 30 },
+        "Fusilli de Salmão Grelhado": { preco: 90.00, tempo: 45 },
+        "Tagliatelle Italiana": { preco: 85.00, tempo: 50 },
+        "Capellini com Prosciutto": { preco: 55.00, tempo: 25 },
+        "Macaroni Cheddar": { preco: 80.00, tempo: 20 }
+    };
+
+    const cardapio = document.getElementById('cardapio');
+    for (let prato in produtos) {
+        const produto = document.createElement('div');
+        produto.classList.add('produto');
+        produto.innerHTML = `
+            <h3>${prato}</h3>
+            <p>Preço: R$ ${produtos[prato].preco.toFixed(2)}</p>
+            <p>Tempo de preparo: ${produtos[prato].tempo} minutos</p>
+            <button onclick="adicionarAoCarrinho('${prato}', ${produtos[prato].preco}, ${produtos[prato].tempo})">Adicionar ao carrinho</button>
+        `;
+        cardapio.appendChild(produto);
+    }
 </script>
 
 </body>
