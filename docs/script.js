@@ -67,6 +67,50 @@ document.querySelectorAll('.pedir').forEach(button => {
         const nome = this.getAttribute('data-nome');
         const preco = this.getAttribute('data-preco');
         adicionarAoCarrinho(nome, preco);
+
+
+let slideIndex = 0;
+showSlides();
+
+// Função para exibir os slides
+function showSlides() {
+    let slides = document.getElementsByClassName("mySlides");
+    // Se o slideIndex for maior que o número de slides, reinicia o slideshow
+    if (slideIndex >= slides.length) { slideIndex = 0 } 
+    // Se o slideIndex for negativo, vai para o último slide
+    if (slideIndex < 0) { slideIndex = slides.length - 1 }
+    
+    // Esconde todos os slides
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    
+    // Exibe o slide atual
+    slides[slideIndex].style.display = "block";  
+
+    // Aumenta o slideIndex para mostrar o próximo slide a cada 3 segundos
+    slideIndex++;
+    setTimeout(showSlides, 3000); // Muda de slide a cada 3 segundos
+}
+
+// Função para ir para o slide anterior
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Função para ir para um slide específico
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+// Adicionando eventos aos botões de navegação
+document.querySelector(".prev").addEventListener("click", function() {
+    plusSlides(-1);
+});
+document.querySelector(".next").addEventListener("click", function() {
+    plusSlides(1);
+});
+
     });
 });
 
