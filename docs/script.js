@@ -1,7 +1,9 @@
 let show = true;
 const menuContent = document.querySelector('.content');
 const menuToggle = menuContent.querySelector('.menu-toggle');
-let carrinho = [];
+
+// Carregar carrinho do localStorage, se existir
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
 // Controlar a visibilidade do menu
 menuToggle.addEventListener('click', () => {
@@ -14,8 +16,11 @@ menuToggle.addEventListener('click', () => {
 function adicionarAoCarrinho(nome, preco) {
     const item = { nome, preco };
     carrinho.push(item);
-    alert(${nome} foi adicionado ao seu carrinho!);
+    alert(`${nome} foi adicionado ao seu carrinho!`);
     atualizarCarrinho();
+
+    // Salvar o carrinho no localStorage
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
 }
 
 // Função para atualizar a exibição do carrinho
@@ -41,7 +46,7 @@ function atualizarCarrinho() {
     });
 
     const totalDiv = document.createElement('div');
-    totalDiv.innerHTML = <strong>Total: R$${total.toFixed(2)}</strong>;
+    totalDiv.innerHTML = `<strong>Total: R$${total.toFixed(2)}</strong>`;
     carrinhoDiv.appendChild(totalDiv);
 
     // Adiciona evento para remover itens
@@ -57,6 +62,9 @@ function atualizarCarrinho() {
 function removerDoCarrinho(index) {
     carrinho.splice(index, 1);
     alert('Item removido do carrinho.');
+
+    // Atualiza o carrinho no localStorage
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
     atualizarCarrinho();
 }
 
@@ -68,6 +76,9 @@ document.querySelectorAll('.pedir').forEach(button => {
         adicionarAoCarrinho(nome, preco);
     });
 });
+
+// Carregar o carrinho na página inicial, caso já haja itens salvos no localStorage
+atualizarCarrinho();
 
 // Controle de Slideshow
 let slideIndex = 0;
