@@ -14,7 +14,7 @@ menuToggle.addEventListener('click', () => {
 function adicionarAoCarrinho(nome, preco) {
     const item = { nome, preco };
     carrinho.push(item);
-    alert(`${nome} foi adicionado ao seu carrinho!`);
+    alert(${nome} foi adicionado ao seu carrinho!);
     atualizarCarrinho();
 }
 
@@ -41,7 +41,7 @@ function atualizarCarrinho() {
     });
 
     const totalDiv = document.createElement('div');
-    totalDiv.innerHTML = `<strong>Total: R$${total.toFixed(2)}</strong>`;
+    totalDiv.innerHTML = <strong>Total: R$${total.toFixed(2)}</strong>;
     carrinhoDiv.appendChild(totalDiv);
 
     // Adiciona evento para remover itens
@@ -75,11 +75,13 @@ showSlides();
 
 // Função para exibir os slides
 function showSlides() {
-    let slides = document.getElementsByClassName("slide");
-
+    let slides = document.getElementsByClassName("mySlides");
+    
+    // Se o slideIndex for maior que o número de slides, reinicia o slideshow
     if (slideIndex >= slides.length) {
         slideIndex = 0;
     }
+    // Se o slideIndex for negativo, vai para o último slide
     if (slideIndex < 0) {
         slideIndex = slides.length - 1;
     }
