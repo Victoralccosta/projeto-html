@@ -207,8 +207,8 @@
             // Salva o carrinho no localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
 
-            // Redireciona para a página do carrinho
-            window.location.href = 'carrinho.html';
+            // Opcional: Mensagem de confirmação
+            alert(`${name} foi adicionado ao seu carrinho!`);
         }
 
         // Evento para adicionar ao carrinho ao clicar no botão "Pedir agora"
