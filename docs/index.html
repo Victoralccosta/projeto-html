@@ -48,7 +48,7 @@
             margin-bottom: 20px;
         }
 
-        .price {
+        .preço {
             font-size: 20px;
             font-weight: bold;
             color: #28a745;
@@ -139,21 +139,21 @@
                     <img src="./bolanhesa.jpg" alt="Macarrão à Bolonhesa">
                     <div class="title">Macarrão à Bolonhesa</div>
                     <div class="description">O macarrão à bolonhesa é um prato tradicional italiano...</div>
-                    <div class="price">R$ 79,00</div>
+                    <div class="preço">R$ 79,00</div>
                     <button class="button pedir">Pedir agora</button>
                 </div>
                 <div class="slide" data-id="2" data-name="Macarrão Penne" data-preço="65,00">
                     <img src="./penne.jpg" alt="Macarrão Penne">
                     <div class="title">Macarrão Penne</div>
                     <div class="description">O macarrão penne ao molho branco é um prato italiano...</div>
-                    <div class="price">R$ 65,00</div>
+                    <div class="preço">R$ 65,00</div>
                     <button class="button pedir">Pedir agora</button>
                 </div>
                 <div class="slide" data-id="3" data-name="Espaguete Carbonara" data-preço="80,00">
                     <img src="./carbonara.jpg" alt="Espaguete Carbonara">
                     <div class="title">Espaguete Carbonara</div>
                     <div class="description">O espaguete carbonara é uma combinação de massa al dente...</div>
-                    <div class="price">R$ 80,00</div>
+                    <div class="preço">R$ 80,00</div>
                     <button class="button pedir">Pedir agora</button>
                 </div>
                 <!-- Adicione mais slides conforme necessário -->
@@ -198,11 +198,11 @@
         }, 7000); // 7000 milissegundos = 7 segundos
 
         // Função para adicionar item ao carrinho
-        function addToCart(id, name, price) {
+        function addToCart(id, name, preço {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
             // Verifica se o item já existe no carrinho e, caso contrário, adiciona
-            cart.push({ id, name, price });
+            cart.push({ id, name, preço });
 
             // Salva o carrinho no localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
@@ -217,7 +217,7 @@
                 const slide = this.closest('.slide');
                 const id = slide.getAttribute('data-id');
                 const name = slide.getAttribute('data-name');
-                const price = slide.getAttribute('data-preço');
+                const preço= slide.getAttribute('data-preço');
 
                 addToCart(id, name, preço);
             });
