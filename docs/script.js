@@ -14,13 +14,19 @@ menuToggle.addEventListener('click', () => {
 
 // Função para adicionar itens ao carrinho
 function adicionarAoCarrinho(nome, preco) {
-    const item = { nome, preco };
-    carrinho.push(item);
-    alert(`${nome} foi adicionado ao seu carrinho!`);
-    atualizarCarrinho();
-
-    // Salvar o carrinho no localStorage
+    // Verifica se o item já está no carrinho
+    const itemExistente = carrinho.find(item => item.nome === nome && item.preco === preco);
+    if (itemExistente) {
+        alert(`${nome} já está no seu carrinho.`);
+    } else {
+        // Adiciona o item ao carrinho
+        const item = { nome, preco };
+        carrinho.push(item);
+        alert(`${nome} foi adicionado ao seu carrinho!`);
+    }
+    // Atualiza o carrinho no localStorage
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    atualizarCarrinho();
 }
 
 // Função para atualizar a exibição do carrinho
@@ -71,9 +77,14 @@ function removerDoCarrinho(index) {
 // Adiciona event listeners aos botões "pedir agora"
 document.querySelectorAll('.pedir').forEach(button => {
     button.addEventListener('click', function() {
+        // Garantir que os atributos estão sendo lidos corretamente
         const nome = this.getAttribute('data-nome');
         const preco = this.getAttribute('data-preco');
-        adicionarAoCarrinho(nome, preco);
+        if (nome && preco) {
+            adicionarAoCarrinho(nome, preco);
+        } else {
+            alert("Erro ao adicionar item ao carrinho.");
+        }
     });
 });
 
