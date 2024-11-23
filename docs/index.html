@@ -121,7 +121,7 @@
         <div class="main">
             <div class="contentsobre">
                 <h2>Sobre Nós</h2>
-                <p>Bem vindo ao La Tavola italiana...</p>
+                <p>Bem-vindo ao La Tavola italiana...</p>
             </div>
             <div class="img-cozinha">
                 <img src="./sobre.jpg" alt="">
@@ -135,26 +135,26 @@
         <!-- Slider de itens do cardápio -->
         <div class="slider">
             <div class="slides">
-                <div class="slide">
+                <div class="slide" data-id="1" data-name="Macarrão à Bolonhesa" data-price="79,00">
                     <img src="./bolanhesa.jpg" alt="Macarrão à Bolonhesa">
                     <div class="title">Macarrão à Bolonhesa</div>
                     <div class="description">O macarrão à bolonhesa é um prato tradicional italiano...</div>
                     <div class="price">R$ 79,00</div>
-                    <button class="button">Pedir agora</button>
+                    <button class="button pedir">Pedir agora</button>
                 </div>
-                <div class="slide">
+                <div class="slide" data-id="2" data-name="Macarrão Penne" data-price="65,00">
                     <img src="./penne.jpg" alt="Macarrão Penne">
                     <div class="title">Macarrão Penne</div>
                     <div class="description">O macarrão penne ao molho branco é um prato italiano...</div>
                     <div class="price">R$ 65,00</div>
-                    <button class="button">Pedir agora</button>
+                    <button class="button pedir">Pedir agora</button>
                 </div>
-                <div class="slide">
+                <div class="slide" data-id="3" data-name="Espaguete Carbonara" data-price="80,00">
                     <img src="./carbonara.jpg" alt="Espaguete Carbonara">
                     <div class="title">Espaguete Carbonara</div>
                     <div class="description">O espaguete carbonara é uma combinação de massa al dente...</div>
                     <div class="price">R$ 80,00</div>
-                    <button class="button">Pedir agora</button>
+                    <button class="button pedir">Pedir agora</button>
                 </div>
                 <!-- Adicione mais slides conforme necessário -->
             </div>
@@ -183,9 +183,8 @@
     </section>
 
     <script>
-        let currentIndex = 0;
-
         // Função para mover o slide
+        let currentIndex = 0;
         function moveSlide(step) {
             const slides = document.querySelector('.slides');
             const totalSlides = document.querySelectorAll('.slide').length;
@@ -198,6 +197,31 @@
             moveSlide(1); // Move para o próximo slide
         }, 7000); // 7000 milissegundos = 7 segundos
 
+        // Função para adicionar item ao carrinho
+        function addToCart(id, name, price) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Adiciona o item ao carrinho
+            cart.push({ id, name, price });
+
+            // Salva o carrinho no localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Redireciona para a página do carrinho
+            window.location.href = 'carrinho.html';
+        }
+
+        // Evento para adicionar ao carrinho ao clicar no botão "Pedir agora"
+        document.querySelectorAll('.pedir').forEach(button => {
+            button.addEventListener('click', function() {
+                const slide = this.closest('.slide');
+                const id = slide.getAttribute('data-id');
+                const name = slide.getAttribute('data-name');
+                const price = slide.getAttribute('data-price');
+
+                addToCart(id, name, price);
+            });
+        });
     </script>
 
     <script src="./script.js"></script>
