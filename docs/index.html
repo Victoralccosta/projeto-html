@@ -185,13 +185,21 @@
     <script>
         let currentIndex = 0;
 
+        // Função para mover o slide
         function moveSlide(step) {
             const slides = document.querySelector('.slides');
             const totalSlides = document.querySelectorAll('.slide').length;
             currentIndex = (currentIndex + step + totalSlides) % totalSlides;
             slides.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
+
+        // Intervalo para avançar os slides automaticamente a cada 7 segundos
+        setInterval(() => {
+            moveSlide(1); // Move para o próximo slide
+        }, 7000); // 7000 milissegundos = 7 segundos
+
     </script>
+
     <script src="./script.js"></script>
 </body>
 </html>
