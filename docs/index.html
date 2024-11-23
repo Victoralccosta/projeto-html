@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
     <title>Restaurante La Tavola</title>
 </head>
@@ -22,6 +21,7 @@
                     <li><a href="#contatos">Contatos</a></li> 
                     <li><a href="formulario/reserva.html">reserva </a></li>                  
                     <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i></a></li>
+
                 </ul>
 
                 <div class="menu-toggle">
@@ -29,10 +29,13 @@
                     <div class="two"></div>
                     <div class="three"></div>
                 </div>
+
             </div>
+        
     </header>
 
     <section class="first-section" id="home">
+        
         <div class="conteudo-principal">
             <h1>RESTAURANTE LA TAVOLA</h1>
             <h2>OS MELHORES MACARRÕES VOCÊ SÓ ENCONTRA AQUI!!</h2>
@@ -62,105 +65,125 @@
     <section class="cardapio" id="cardapio">
         <h2>Cardápio</h2>
 
-        <!-- Container do Swiper -->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <!-- Slide 1 - Macarrão à Bolonhesa -->
-                <div class="swiper-slide">
-                    <div class="bolanhesa">
-                        <img src="./bolanhesa.jpg" alt="bolanhesa">
-                        <div class="info">
-                            <h3>Macarrão à Bolonhesa</h3>
-                            <h1>O macarrão à bolonhesa, ou "ragù alla bolognese", é um prato tradicional italiano feito com carne moída, cebola, cenoura e aipo cozidos lentamente em um molho de tomate. Geralmente servido com tagliatelle, é finalizado com queijo parmesão, resultando em um prato saboroso e reconfortante que representa a rica culinária de Bolonha. Buon appetito!</h1>
-                            <h4>Prato para 1 Pessoa<span>R$79,00</span></h4>
-                            <h4>Prato para 2 Pessoas<span>R$109,00</span></h4>
-                            <button class="pedir">pedir agora</button>
-                        </div>   
-                    </div>
+            <div class="itens-cardapio">
+                <div class="bolanhesa">
+                    <img src="./bolanhesa.jpg" alt="bolanhesa">
+                    <div class="info">
+                        <h3>Macarrão á Bolanhesa</h3>
+                        <h1>O macarrão à bolonhesa, ou "ragù alla bolognese", é um prato tradicional italiano feito com carne moída, cebola, cenoura e aipo cozidos lentamente em um molho de tomate. Geralmente servido com tagliatelle, é finalizado com queijo parmesão, resultando em um prato saboroso e reconfortante que representa a rica culinária de Bolonha. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoa<span>R$79,00</span></h4>
+                        <h4>Prato para 2 Pessoa<span>R$109,00</span></h4>                        
+                        <button class="pedir">pedir agora</button>
+                    </div>   
                 </div>
-                <!-- Slide 2 - Macarrão Penne -->
-                <div class="swiper-slide">
-                    <div class="penne">
-                        <img src="./penne.jpg" alt="penne">
-                        <div class="info">
-                            <h3>Macarrão Penne</h3>
-                            <h1>O macarrão penne ao molho branco é um prato italiano cremoso e delicioso. A massa penne, com sua forma tubular, é envolvida em um molho suave feito de manteiga, farinha, leite e queijo parmesão. Com um toque de noz-moscada, é uma opção reconfortante e perfeita para qualquer ocasião. Prove este delicioso prato criado pelo nosso Vicenzo Lopes. Buon appetito!</h1>
-                            <h4>Prato para 1 Pessoa<span>R$65,00</span></h4>
-                            <h4>Prato para 2 Pessoas<span>R$95,00</span></h4>
-                            <button class="pedir">pedir agora</button>
-                        </div> 
-                    </div>
+                <div class="penne">
+                    <img src="./penne.jpg" alt="penne">
+                    <div class="info">
+                        <h3>Macarrão Penne</h3>
+                        <h1>O macarrão penne ao molho branco é um prato italiano cremoso e delicioso. A massa penne, com sua forma tubular, é envolvida em um molho suave feito de manteiga, farinha, leite e queijo parmesão. Com um toque de noz-moscada, é uma opção reconfortante e perfeita para qualquer ocasião. Prove este delicioso prato criado pelo nosso Vicenzo Lopes. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoas <span>R$65,00</span></h4>
+                        <h4>Prato para 2 Pessoas <span>R$95,00</span></h4>
+                        <button class="pedir">pedir agora</button>
+                    </div> 
+                
                 </div>
-                <!-- Slide 3 - Espaguete Carbonara -->
-                <div class="swiper-slide">
-                    <div class="carbonara">
-                        <img src="./carbonara.jpg" alt="carbonara">
-                        <div class="info">
-                            <h3>Espaguete Carbonara</h3>
-                            <h1>Um clássico da culinária italiana, o espaguete carbonara é uma combinação perfeita de massa al dente, pancetta crocante e um molho cremoso de gema de ovo e queijo parmesão. Temperado com pimenta-do-reino, é um prato simples, mas irresistível, que traz todo o sabor da tradição italiana à sua mesa. Buon appetito!</h1>
-                            <h4>Prato para 1 Pessoa<span>R$80,00</span></h4>
-                            <h4>Prato para 2 Pessoas<span>R$120,00</span></h4>
-                            <button class="pedir">pedir agora</button>
-                        </div> 
-                    </div>
+                <div class="carbonara">
+                    <img src="./carbonara.jpg" alt="carbornara">
+                    <div class="info">
+                        <h3>Espaguete Carbonara</h3>
+                        <h1>Um clássico da culinária italiana e dos pratos mais pedidos da casa o tão famoso, espaguete carbonara é uma combinação perfeita de massa al dente, pancetta crocante e um molho cremoso de gema de ovo e queijo parmesão. Temperado com pimenta-do-reino, é um prato simples, mas irresistível, que traz todo o sabor da tradição italiana à sua mesa. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoa <span>R$80,00</span></h4>
+                        <h4>Prato para 2 Pessoas <span>R$120,00</span></h4>
+                        <button class="pedir">pedir agora</button>
+                    </div> 
+                
                 </div>
-                <!-- Slide 4 - Lasanha de Carne -->
-                <div class="swiper-slide">
-                    <div class="lasanha">
-                        <img src="./lasanha.jpg" alt="lasanha">
-                        <div class="info">
-                            <h3>Lasanha de Carne</h3>
-                            <h1>A lasanha de carne é um prato clássico italiano, recheado com camadas de massa, molho bolonhesa, queijo e molho bechamel. Tudo assado até ficar dourado e borbulhante. Um prato reconfortante e cheio de sabor, ideal para compartilhar com a família e amigos. Buon appetito!</h1>
-                            <h4>Prato para 1 Pessoa<span>R$85,00</span></h4>
-                            <h4>Prato para 2 Pessoas<span>R$125,00</span></h4>
-                            <button class="pedir">pedir agora</button>
-                        </div> 
-                    </div>
+                <div class="farfalle">
+                    <img src="./farfalle.jpg" alt="farfalle">
+                    <div class="info">
+                        <h3>Farfalle da Casa</h3>
+                        <h1>Uma deliciosa criação de Vincenzo Lopes com um grande toque especial de sua amada esposa conta com um sabor inesquecível e encantador, com um grande toque da Itália, que combina farfalle fresca com um molho branco cremoso, realçado por queijo parmesão e ervas aromáticas. Este prato traz o aconchego da cozinha caseira, perfeito para saborear momentos especiais. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoa <span>R$75,00</span></h4>
+                        <h4>Prato Para 2 Pessoas <span>R$109,00</span></h4>
+                        <button class="pedir">pedir agora</button>
+                    </div> 
+                
                 </div>
-                <!-- Slide 5 - Fettuccine Alfredo -->
-                <div class="swiper-slide">
-                    <div class="fettuccine">
-                        <img src="./fettuccine.jpg" alt="fettuccine">
-                        <div class="info">
-                            <h3>Fettuccine Alfredo</h3>
-                            <h1>Fettuccine Alfredo é um prato italiano clássico de massa, servido com um molho cremoso à base de manteiga, creme de leite e queijo parmesão. O molho é suave e delicioso, cobrindo cada fio de fettuccine de forma rica e saborosa. Um prato perfeito para os amantes de massas cremosas. Buon appetito!</h1>
-                            <h4>Prato para 1 Pessoa<span>R$75,00</span></h4>
-                            <h4>Prato para 2 Pessoas<span>R$105,00</span></h4>
-                            <button class="pedir">pedir agora</button>
-                        </div> 
-                    </div>
+                <div class="ravioli">
+                    <img src="./ravioli.jpg" alt="ravioli">
+                    <div class="info">
+                        <h3>Ravioli Prime</h3>
+                        <h1>Prove a harmonia perfeita entre sabor e textura com nosso Ravioli Prime. Esses delicados raviolis são recheados com uma combinação cremosa de espinafre fresco e ricota, proporcionando um sabor suave e nutritivo. Acompanhados por ervilhas frescas. Ideal para um jantar especial ou uma refeição reconfortante, o Ravioli Prime promete encantar seu paladar e aquecer seu coração. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoa<span>R$65,00</span></h4>
+                        <h4>Prato para 2 Pessoas <span>R$95,00</span></h4>
+                        <button class="pedir">pedir agora</button>
+                    </div> 
+                
                 </div>
-                <!-- Slide 6 - Penne ao Pesto -->
-                <div class="swiper-slide">
-                    <div class="penne-pesto">
-                        <img src="./penne-pesto.jpg" alt="penne ao pesto">
-                        <div class="info">
-                            <h3>Penne ao Pesto</h3>
-                            <h1>O penne ao pesto é um prato delicioso e fresco, com molho pesto feito com manjericão, pinolis, alho, queijo parmesão e azeite de oliva. A combinação perfeita entre a massa e o molho verde cria um sabor incrível e refrescante. Buon appetito!</h1>
-                            <h4>Prato para 1 Pessoa<span>R$70,00</span></h4>
-                            <h4>Prato para 2 Pessoas<span>R$100,00</span></h4>
-                            <button class="pedir">pedir agora</button>
-                        </div> 
-                    </div>
+                <div class="fusilli">
+                    <img src="./fusilli.png" alt="fusilli">
+                    <div class="info">
+                        <h3>Fusilli de Salmão Grelhado</h3>
+                        <h1>Uma combinação irresistível de fusilli al dente e suculentos pedaços de salmão grelhado, realçados por um molho leve de limão e ervas. Este prato traz uma mistura perfeita de sabores do mar e frescor, criando uma refeição deliciosa e nutritiva. Com sua textura única e o toque defumado do salmão, é uma opção ideal para quem busca um prato sofisticado e reconfortante. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoa <span>R$90,00</span></h4>
+                        <h4>Prato para 2 Pessoas<span>R$125,00</span></h4>
+                        <button class="pedir">pedir agora</button>
+                    </div> 
+                
                 </div>
-                <!-- Adicione mais slides conforme necessário -->
+                <div class="tagliatelle">
+                    <img src="./tagliatellea.jpg" alt="tagliatelle">
+                    <div class="info">
+                        <h3>Tagliatelle Italiana</h3>
+                        <h1>Uma massa fresca e longa, o tagliatelle é característico da culinária italiana, com sua textura rústica que permite absorver molhos de maneira deliciosa. Feita com ovos e farinha, sua forma plana e larga a torna perfeita para acompanhamentos robustos, como ragù ou molhos cremosos. Cada garfada traz um sabor autêntico da tradição italiana, tornando-o uma escolha ideal. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoa <span>R$85,00</span></h4>
+                        <h4>Prato para 2 Pessoas <span>R$110,00</span></h4>
+                        <button class="pedir">pedir agora</button>
+                    </div> 
+                
+                </div>
+                <div class="cappellini">
+                    <img src="./cappellini.jpg" alt="cappellini">
+                    <div class="info">
+                        <h3>Capellini com Prosciutto</h3>
+                        <h1>Uma refeição leve e cheia de sabor, o capellini é uma massa fina e delicada que combina perfeitamente com o prosciutto crocante, que adiciona um toque salgado e crocante. Os tomates grelhados, caramelizados até ficarem suculentos, trazem um frescor e um leve dulçor ao prato. Finalizado com um fio de azeite de oliva e ervas frescas. ideal para uma refeição sofisticada e saborosa. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoa <span>R$55,00</span></h4>
+                        <h4>Prato para 2 Pessoas <span>R$85,00</span></h4>
+                        <button class="pedir">pedir agora</button>
+                    </div>                
+                </div>
+                <div class="macaroni">
+                    <img src="./macaroni.jpg" alt="macaroni">
+                    <div class="info">
+                        <h3>Macaroni Cheddar</h3>
+                        <h1>O macaroni com cheddar é uma combinação irresistível de massas curtas e um molho cremoso e rico, feito com queijo cheddar derretido. A suavidade do cheddar, com seu sabor marcante, envolve cada pedaço de macaroni, criando uma experiência deliciosa e reconfortante. Este prato é perfeito para qualquer ocasião, seja como acompanhamento ou prato principal. Buon appetito!</h1>
+                        <h4>Prato para 1 Pessoa <span>R$80,00</span></h4>
+                        <h4>Prato para 2 Pessoas <span>R$110,00</span></h4>
+                        <button class="pedir">pedir agora</button>
+                    </div>                
+                </div>  
             </div>
 
-            <!-- Navegação do slider -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script>
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    </script>
+    <section class="contatos" id="contatos">
+        <h3>Contatos</h3>
+        <div class="contatos-secao">
+            <div>
+                <i class="fas fa-phone"></i>
+                <span>(19) 98888-7777</span>
+            </div>
+            <div>
+                <i class="fab fa-instagram"></i>
+                <span>@Latavola_italiana</span>
+            </div>
+            <div>
+                <i class="fab fa-facebook-f"></i>
+                <span>LaTavola Italiana</span>
+        </div>
+        </div>
+    </section>
+  
+    <script src="./script.js"></script>
 </body>
 </html>
