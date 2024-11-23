@@ -75,13 +75,11 @@ showSlides();
 
 // Função para exibir os slides
 function showSlides() {
-    let slides = document.getElementsByClassName("mySlides");
-    
-    // Se o slideIndex for maior que o número de slides, reinicia o slideshow
+    let slides = document.getElementsByClassName("slide");
+
     if (slideIndex >= slides.length) {
         slideIndex = 0;
     }
-    // Se o slideIndex for negativo, vai para o último slide
     if (slideIndex < 0) {
         slideIndex = slides.length - 1;
     }
