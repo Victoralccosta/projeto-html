@@ -1,15 +1,14 @@
 let show = true;
 const menuContent = document.querySelector('.content');
 const menuToggle = menuContent.querySelector('.menu-toggle');
+let carrinho = [];
 
-
+// Controlar a visibilidade do menu
 menuToggle.addEventListener('click', () => {
-
-    document.body.style.overflow = show ? 'hidden' : 'initial'
-
+    document.body.style.overflow = show ? 'hidden' : 'initial';
     menuContent.classList.toggle('on', show);
     show = !show;
-    let carrinho = [];
+});
 
 // Função para adicionar itens ao carrinho
 function adicionarAoCarrinho(nome, preco) {
@@ -67,24 +66,31 @@ document.querySelectorAll('.pedir').forEach(button => {
         const nome = this.getAttribute('data-nome');
         const preco = this.getAttribute('data-preco');
         adicionarAoCarrinho(nome, preco);
+    });
+});
 
-
+// Controle de Slideshow
 let slideIndex = 0;
 showSlides();
 
 // Função para exibir os slides
 function showSlides() {
     let slides = document.getElementsByClassName("mySlides");
-    // Se o slideIndex for maior que o número de slides, reinicia o slideshow
-    if (slideIndex >= slides.length) { slideIndex = 0 } 
-    // Se o slideIndex for negativo, vai para o último slide
-    if (slideIndex < 0) { slideIndex = slides.length - 1 }
     
+    // Se o slideIndex for maior que o número de slides, reinicia o slideshow
+    if (slideIndex >= slides.length) {
+        slideIndex = 0;
+    }
+    // Se o slideIndex for negativo, vai para o último slide
+    if (slideIndex < 0) {
+        slideIndex = slides.length - 1;
+    }
+
     // Esconde todos os slides
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";  
     }
-    
+
     // Exibe o slide atual
     slides[slideIndex].style.display = "block";  
 
@@ -95,12 +101,14 @@ function showSlides() {
 
 // Função para ir para o slide anterior
 function plusSlides(n) {
-    showSlides(slideIndex += n);
+    slideIndex += n;
+    showSlides();
 }
 
 // Função para ir para um slide específico
 function currentSlide(n) {
-    showSlides(slideIndex = n);
+    slideIndex = n;
+    showSlides();
 }
 
 // Adicionando eventos aos botões de navegação
@@ -110,8 +118,3 @@ document.querySelector(".prev").addEventListener("click", function() {
 document.querySelector(".next").addEventListener("click", function() {
     plusSlides(1);
 });
-
-    });
-});
-
-})
