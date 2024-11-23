@@ -8,43 +8,81 @@
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
     <title>La Tavola - Carrinho de Compras</title>
     <style>
-        /* Estilos permanecem iguais ao que você já tem */
+        /* Estilos básicos do carrinho */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #008C45;
+            margin-top: 80px;
+        }
+
+        .carrinho {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #F44336;
+        }
+
+        .remover {
+            background-color: #F44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .remover:hover {
+            background-color: #D32F2F;
+        }
+
+        button {
+            background-color: #008C45;
+            color: #fff;
+            border: 2px solid #008C45;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        button:hover {
+            background-color: #005F3B;
+            border-color: #005F3B;
+        }
     </style>
 </head>
 <body>
 
-<!-- Cabeçalho -->
-<header>
-    <div class="content">
-        <div class="logo">
-            <img src="logotavolaoficial.png" alt="La Tavola">
-        </div>
-        <ul class="list-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#sobrenos">Sobre nós</a></li>
-            <li><a href="#cardapio">Cardápio</a></li>
-            <li><a href="#contatos">Contatos</a></li> 
-            <li><a href="formulario/reserva.html">Reserva</a></li>                  
-            <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i>Carrinho</a></li>
-        </ul>
-
-        <!-- Menu Toggle (para dispositivos móveis) -->
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-</header>
-
-<!-- Carrinho de Compras -->
 <h1>La Tavola - Carrinho de Compras</h1>
 
 <div class="carrinho">
     <h2>Carrinho</h2>
     <ul id="itensCarrinho"></ul>
     <p class="total" id="total">Total: R$ 0,00</p>
-    <p id="tempoPreparo">Tempo de preparo: 0 minutos</p>
     <button onclick="finalizarPedido()">Finalizar Pedido</button>
     <p class="mensagem" id="mensagem"></p>
 </div>
@@ -53,22 +91,15 @@
 <div id="cardapio"></div>
 
 <script>
-    // Função para ativar e desativar o menu mobile
-    function toggleMenu() {
-        document.querySelector('.list-menu').classList.toggle('active');
-    }
-
-    // Recuperando carrinho armazenado no localStorage (se houver)
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     let total = 0;
     let tempoPreparoTotal = 0;
 
-    // Atualizando a interface do carrinho com os dados armazenados
+    // Atualiza a interface do carrinho com os dados
     function atualizarCarrinho() {
         const itensCarrinho = document.getElementById('itensCarrinho');
-        itensCarrinho.innerHTML = ''; // Limpa o carrinho da interface
+        itensCarrinho.innerHTML = ''; // Limpa o carrinho na interface
 
-        // Iterando sobre os itens do carrinho
         carrinho.forEach(item => {
             const itemElement = document.createElement('li');
             itemElement.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} - ${item.tempoPreparo} min`;
@@ -84,55 +115,55 @@
             tempoPreparoTotal += item.tempoPreparo;
         });
 
-        // Atualizando os valores totais na interface
         document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
-        document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
     }
 
-    // Função para adicionar um item ao carrinho
+    // Adiciona um item ao carrinho
     function adicionarAoCarrinho(nome, preco, tempoPreparo) {
         const item = { nome, preco, tempoPreparo };
         carrinho.push(item);
 
-        // Atualizando o carrinho no localStorage
+        // Atualiza o localStorage
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-        // Atualizando a interface
+        // Atualiza a interface
+        total = 0;
+        tempoPreparoTotal = 0;
         atualizarCarrinho();
     }
 
-    // Função para remover item do carrinho
+    // Remove item do carrinho
     function removerDoCarrinho(item, itemElement) {
-        // Removendo o item do carrinho
         carrinho = carrinho.filter(c => c !== item);
-
-        // Atualizando o localStorage
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-        // Removendo o item da interface
-        itemElement.remove();
-
-        // Atualizando o total
+        // Atualiza o total
         total -= item.preco;
         tempoPreparoTotal -= item.tempoPreparo;
 
-        // Atualizando os valores totais na interface
+        // Remove da interface
+        itemElement.remove();
+
+        // Atualiza o total na interface
         document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
-        document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
     }
 
-    // Função para finalizar o pedido
+    // Finaliza o pedido
     function finalizarPedido() {
         const mensagem = document.getElementById('mensagem');
         mensagem.textContent = `Obrigado por seu pedido! Total: R$ ${total.toFixed(2)}. Seu pedido está sendo preparado e será entregue em ${tempoPreparoTotal} minutos.`;
 
-        // Limpando o carrinho após finalizar
+        // Limpa o carrinho
         carrinho = [];
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+        // Atualiza a interface
+        total = 0;
+        tempoPreparoTotal = 0;
         atualizarCarrinho();
     }
 
-    // Renderizando o cardápio
+    // Renderiza o cardápio
     const produtos = {
         "Macarrão à Bolonhesa": { preco: 79.00, tempo: 40 },
         "Macarrão Penne": { preco: 65.00, tempo: 30 },
@@ -158,7 +189,7 @@
         cardapio.appendChild(produto);
     }
 
-    // Carregando o carrinho ao carregar a página
+    // Carrega o carrinho ao carregar a página
     atualizarCarrinho();
 </script>
 
