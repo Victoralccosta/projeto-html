@@ -135,21 +135,21 @@
         <!-- Slider de itens do cardápio -->
         <div class="slider">
             <div class="slides">
-                <div class="slide" data-id="1" data-name="Macarrão à Bolonhesa" data-price="79,00">
+                <div class="slide" data-id="1" data-name="Macarrão à Bolonhesa" data-preço="79,00">
                     <img src="./bolanhesa.jpg" alt="Macarrão à Bolonhesa">
                     <div class="title">Macarrão à Bolonhesa</div>
                     <div class="description">O macarrão à bolonhesa é um prato tradicional italiano...</div>
                     <div class="price">R$ 79,00</div>
                     <button class="button pedir">Pedir agora</button>
                 </div>
-                <div class="slide" data-id="2" data-name="Macarrão Penne" data-price="65,00">
+                <div class="slide" data-id="2" data-name="Macarrão Penne" data-preço="65,00">
                     <img src="./penne.jpg" alt="Macarrão Penne">
                     <div class="title">Macarrão Penne</div>
                     <div class="description">O macarrão penne ao molho branco é um prato italiano...</div>
                     <div class="price">R$ 65,00</div>
                     <button class="button pedir">Pedir agora</button>
                 </div>
-                <div class="slide" data-id="3" data-name="Espaguete Carbonara" data-price="80,00">
+                <div class="slide" data-id="3" data-name="Espaguete Carbonara" data-preço="80,00">
                     <img src="./carbonara.jpg" alt="Espaguete Carbonara">
                     <div class="title">Espaguete Carbonara</div>
                     <div class="description">O espaguete carbonara é uma combinação de massa al dente...</div>
@@ -217,9 +217,9 @@
                 const slide = this.closest('.slide');
                 const id = slide.getAttribute('data-id');
                 const name = slide.getAttribute('data-name');
-                const price = slide.getAttribute('data-price');
+                const price = slide.getAttribute('data-preço');
 
-                addToCart(id, name, price);
+                addToCart(id, name, preço);
             });
         });
     </script>
