@@ -8,213 +8,7 @@
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
     <title>La Tavola - Carrinho de Compras</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            padding-top: 80px; /* Ajuste para dar espaço ao cabeçalho fixo */
-        }
-
-        /* Cabeçalho Fixado */
-        header {
-            position: fixed; /* Cabeçalho fixo no topo */
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333; /* Cor de fundo do cabeçalho */
-            padding: 15px 0;
-            z-index: 1000; /* Fica acima de outros elementos */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
-        }
-
-        header .content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header .logo img {
-            width: 180px;
-            transition: transform 0.3s ease;
-        }
-
-        header .logo img:hover {
-            transform: scale(1.1);
-        }
-
-        /* Menu */
-        header .list-menu {
-            list-style: none;
-            display: flex;
-            margin: 0;
-        }
-
-        header .list-menu li {
-            margin-left: 25px;
-            position: relative;
-        }
-
-        header .list-menu li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: color 0.3s ease, padding 0.3s ease;
-        }
-
-        header .list-menu li a:hover {
-            color: #f1c40f;
-            padding-bottom: 5px;
-            border-bottom: 2px solid #f1c40f;
-        }
-
-        header .list-menu li a i {
-            margin-right: 8px;
-        }
-
-        /* Botão do menu em dispositivos móveis */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 25px;
-            cursor: pointer;
-        }
-
-        .menu-toggle div {
-            background-color: #fff;
-            height: 4px;
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            header .content {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            header .list-menu {
-                display: none;
-                flex-direction: column;
-                margin-top: 20px;
-                width: 100%;
-                text-align: center;
-            }
-
-            header .list-menu li {
-                margin: 10px 0;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            header .list-menu.active {
-                display: flex;
-            }
-        }
-
-        /* Estilo da área do carrinho */
-        .carrinho {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 36px;
-            color: #008C45;
-            margin-top: 80px;
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 24px;
-            color: #333;
-        }
-
-        .produto {
-            margin: 20px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f8f8f8;
-        }
-
-        .produto h3 {
-            font-size: 22px;
-            color: #008C45;
-            margin: 10px 0;
-        }
-
-        .produto p {
-            font-size: 18px;
-            color: #555;
-        }
-
-        button {
-            background-color: #008C45;
-            color: #fff;
-            border: 2px solid #008C45;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
-            display: block;
-            margin: 20px auto 0;
-        }
-
-        button:hover {
-            background-color: #005F3B;
-            border-color: #005F3B;
-            transform: scale(1.05);
-        }
-
-        .remover {
-            background-color: #F44336;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            font-size: 0.9em;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .remover:hover {
-            background-color: #D32F2F;
-        }
-
-        .total {
-            font-weight: bold;
-            font-size: 1.5em;
-            color: #F44336;
-        }
-
-        #mensagem {
-            font-size: 20px;
-            color: #008C45;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
-        }
+        /* Estilos permanecem iguais ao que você já tem */
     </style>
 </head>
 <body>
@@ -264,47 +58,78 @@
         document.querySelector('.list-menu').classList.toggle('active');
     }
 
-    // Outras funções do carrinho e cardápio
+    // Recuperando carrinho armazenado no localStorage (se houver)
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     let total = 0;
     let tempoPreparoTotal = 0;
-    let carrinho = [];
 
+    // Atualizando a interface do carrinho com os dados armazenados
+    function atualizarCarrinho() {
+        const itensCarrinho = document.getElementById('itensCarrinho');
+        itensCarrinho.innerHTML = ''; // Limpa o carrinho da interface
+
+        // Iterando sobre os itens do carrinho
+        carrinho.forEach(item => {
+            const itemElement = document.createElement('li');
+            itemElement.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} - ${item.tempoPreparo} min`;
+
+            const botaoRemover = document.createElement('button');
+            botaoRemover.textContent = 'Remover';
+            botaoRemover.classList.add('remover');
+            botaoRemover.onclick = () => removerDoCarrinho(item, itemElement);
+            itemElement.appendChild(botaoRemover);
+            itensCarrinho.appendChild(itemElement);
+
+            total += item.preco;
+            tempoPreparoTotal += item.tempoPreparo;
+        });
+
+        // Atualizando os valores totais na interface
+        document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+        document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
+    }
+
+    // Função para adicionar um item ao carrinho
     function adicionarAoCarrinho(nome, preco, tempoPreparo) {
         const item = { nome, preco, tempoPreparo };
         carrinho.push(item);
 
-        // Atualizando o carrinho na interface
-        const itensCarrinho = document.getElementById('itensCarrinho');
-        const itemElement = document.createElement('li');
-        itemElement.textContent = `${nome} - R$ ${preco.toFixed(2)} - ${tempoPreparo} min`;
-        const botaoRemover = document.createElement('button');
-        botaoRemover.textContent = 'Remover';
-        botaoRemover.classList.add('remover');
-        botaoRemover.onclick = () => removerDoCarrinho(item, itemElement);
-        itemElement.appendChild(botaoRemover);
-        itensCarrinho.appendChild(itemElement);
+        // Atualizando o carrinho no localStorage
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-        total += preco;
-        tempoPreparoTotal += tempoPreparo;
-
-        document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
-        document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
+        // Atualizando a interface
+        atualizarCarrinho();
     }
 
+    // Função para remover item do carrinho
     function removerDoCarrinho(item, itemElement) {
+        // Removendo o item do carrinho
         carrinho = carrinho.filter(c => c !== item);
+
+        // Atualizando o localStorage
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+        // Removendo o item da interface
         itemElement.remove();
 
+        // Atualizando o total
         total -= item.preco;
         tempoPreparoTotal -= item.tempoPreparo;
 
+        // Atualizando os valores totais na interface
         document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
         document.getElementById('tempoPreparo').textContent = `Tempo de preparo: ${tempoPreparoTotal} minutos`;
     }
 
+    // Função para finalizar o pedido
     function finalizarPedido() {
         const mensagem = document.getElementById('mensagem');
         mensagem.textContent = `Obrigado por seu pedido! Total: R$ ${total.toFixed(2)}. Seu pedido está sendo preparado e será entregue em ${tempoPreparoTotal} minutos.`;
+
+        // Limpando o carrinho após finalizar
+        carrinho = [];
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        atualizarCarrinho();
     }
 
     // Renderizando o cardápio
@@ -332,6 +157,9 @@
         `;
         cardapio.appendChild(produto);
     }
+
+    // Carregando o carrinho ao carregar a página
+    atualizarCarrinho();
 </script>
 
 </body>
