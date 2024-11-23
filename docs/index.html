@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -53,7 +53,7 @@
         </div>    
     </section>
 
-    <!-- Seção do Slide Show no lugar do Cardápio -->
+    
     <section class="cardapio" id="cardapio">
         <h2>Descubra nossos Pratos</h2>
 
@@ -155,58 +155,6 @@
         </div>
     </section>
 
-    <script>
-        let slideIndex = 0;
-
-        // Função para mostrar o slide atual
-        function mostrarSlide() {
-            let slides = document.getElementsByClassName("slide");
-            
-            // Ocultar todos os slides
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-
-            // Avançar para o próximo slide
-            slideIndex++;
-
-            if (slideIndex > slides.length) {slideIndex = 1}  // Se chegou ao final, volta para o primeiro
-
-            // Mostrar o slide atual
-            slides[slideIndex-1].style.display = "block";  
-
-            // Mudar o slide a cada 7 segundos
-            setTimeout(mostrarSlid, 7000); 
-        }
-
-        // Função para mudar o slide manualmente (anterior ou próximo)
-        function mudarSlide(n) {
-            let slides = document.getElementsByClassName("slide");
-
-            slideIndex += n;
-
-            // Se o slideIndex for menor que 1, vai para o último slide
-            if (slideIndex < 1) {
-                slideIndex = slides.length;
-            }
-
-            // Se o slideIndex for maior que o número de slides, vai para o primeiro
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-
-            // Exibe o slide atual
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-
-            slides[slideIndex-1].style.display = "block";
-        }
-
-        // Inicia a exibição do slide
-        mostrarSlide();
-    </script>
-
-    <script src="./script.js"></script>
+    <script src="./script.js"></script> 
 </body>
 </html>
