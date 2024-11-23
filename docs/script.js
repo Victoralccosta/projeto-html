@@ -17,13 +17,15 @@ function adicionarAoCarrinho(nome, preco) {
     // Verifica se o item já está no carrinho
     const itemExistente = carrinho.find(item => item.nome === nome && item.preco === preco);
     if (itemExistente) {
-        alert(`${nome} já está no seu carrinho.`);
+        // Não exibe alerta de duplicação
+        return;  // Se o item já existe, apenas não faz nada
     } else {
         // Adiciona o item ao carrinho
         const item = { nome, preco };
         carrinho.push(item);
         alert(`${nome} foi adicionado ao seu carrinho!`);
     }
+    
     // Atualiza o carrinho no localStorage
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     atualizarCarrinho();
