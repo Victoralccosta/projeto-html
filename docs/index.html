@@ -201,13 +201,13 @@
         function addToCart(id, name, price) {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Adiciona o item ao carrinho
+            // Verifica se o item já existe no carrinho e, caso contrário, adiciona
             cart.push({ id, name, price });
 
             // Salva o carrinho no localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
 
-            // Opcional: Mensagem de confirmação
+            // Mensagem de confirmação sem redirecionar para a página do carrinho
             alert(`${name} foi adicionado ao seu carrinho!`);
         }
 
