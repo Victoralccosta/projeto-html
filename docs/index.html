@@ -198,8 +198,8 @@
         }, 7000); // 7000 milissegundos = 7 segundos
 
         // Função para adicionar item ao carrinho
-        function addToCart(id, name, preço {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        function addToCart(id, name, preço, {
+            const addToCart = JSON.parse(localStorage.getItem('cart')) || [];
 
             // Verifica se o item já existe no carrinho e, caso contrário, adiciona
             cart.push({ id, name, preço });
