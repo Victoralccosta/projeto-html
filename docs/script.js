@@ -1,17 +1,3 @@
-let show = true;
-const menuContent = document.querySelector('.content');
-const menuToggle = menuContent.querySelector('.menu-toggle');
-
-// Carregar carrinho do localStorage, se existir
-let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-// Controlar a visibilidade do menu
-menuToggle.addEventListener('click', () => {
-    document.body.style.overflow = show ? 'hidden' : 'initial';
-    menuContent.classList.toggle('on', show);
-    show = !show;
-});
-
 // Função para adicionar itens ao carrinho
 function adicionarAoCarrinho(nome, preco) {
     // Verifica se o item já está no carrinho
@@ -25,7 +11,7 @@ function adicionarAoCarrinho(nome, preco) {
         carrinho.push(item);
         alert(`${nome} foi adicionado ao seu carrinho!`);
     }
-    
+
     // Atualiza o carrinho no localStorage
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     atualizarCarrinho();
