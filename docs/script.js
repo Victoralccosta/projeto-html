@@ -1,9 +1,12 @@
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || []; // Carrega carrinho do localStorage
+
 // Função para adicionar itens ao carrinho
 function adicionarAoCarrinho(nome, preço) {
     // Verifica se o item já está no carrinho
     const itemExistente = carrinho.find(item => item.nome === nome && item.preço === preço);
     if (itemExistente) {
-        return; // Se o item já existe, não faz nada
+        alert(`${nome} já está no seu carrinho.`);
+        return;  // Se o item já existe, não faz nada
     } else {
         // Adiciona o item ao carrinho
         const item = { nome, preço };
@@ -19,7 +22,7 @@ function adicionarAoCarrinho(nome, preço) {
 // Função para atualizar a exibição do carrinho
 function atualizarCarrinho() {
     const carrinhoDiv = document.getElementById('carrinho');
-    carrinhoDiv.innerHTML = '';
+    carrinhoDiv.innerHTML = '';  // Limpa a exibição atual
 
     if (carrinho.length === 0) {
         carrinhoDiv.innerHTML = '<p>O carrinho está vazio.</p>';
@@ -53,7 +56,7 @@ function atualizarCarrinho() {
 
 // Função para remover itens do carrinho
 function removerDoCarrinho(index) {
-    carrinho.splice(index, 1);
+    carrinho.splice(index, 1); // Remove o item do carrinho
     alert('Item removido do carrinho.');
 
     // Atualiza o carrinho no localStorage
@@ -66,6 +69,7 @@ document.querySelectorAll('.pedir').forEach(button => {
     button.addEventListener('click', function() {
         const nome = this.getAttribute('data-nome');
         const preço = this.getAttribute('data-preço');
+        
         if (nome && preço) {
             adicionarAoCarrinho(nome, preço);
         } else {
@@ -74,7 +78,7 @@ document.querySelectorAll('.pedir').forEach(button => {
     });
 });
 
-// Carregar o carrinho na página inicial, caso já haja itens salvos no localStorage
+// Carregar o carrinho na página inicial
 atualizarCarrinho();
 
 // Controle de Slideshow
@@ -85,24 +89,19 @@ showSlides();
 function showSlides() {
     let slides = document.getElementsByClassName("mySlides");
 
-    // Se o slideIndex for maior que o número de slides, reinicia o slideshow
     if (slideIndex >= slides.length) {
         slideIndex = 0;
     }
-    // Se o slideIndex for negativo, vai para o último slide
     if (slideIndex < 0) {
         slideIndex = slides.length - 1;
     }
 
-    // Esconde todos os slides
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";  
     }
 
-    // Exibe o slide atual
     slides[slideIndex].style.display = "block";  
 
-    // Aumenta o slideIndex para mostrar o próximo slide a cada 3 segundos
     slideIndex++;
     setTimeout(showSlides, 3000); // Muda de slide a cada 3 segundos
 }
