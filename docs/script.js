@@ -3,8 +3,7 @@ function adicionarAoCarrinho(nome, preço) {
     // Verifica se o item já está no carrinho
     const itemExistente = carrinho.find(item => item.nome === nome && item.preço === preço);
     if (itemExistente) {
-        // Não exibe alerta de duplicação
-        return;  // Se o item já existe, apenas não faz nada
+        return; // Se o item já existe, não faz nada
     } else {
         // Adiciona o item ao carrinho
         const item = { nome, preço };
@@ -65,7 +64,6 @@ function removerDoCarrinho(index) {
 // Adiciona event listeners aos botões "pedir agora"
 document.querySelectorAll('.pedir').forEach(button => {
     button.addEventListener('click', function() {
-        // Garantir que os atributos estão sendo lidos corretamente
         const nome = this.getAttribute('data-nome');
         const preço = this.getAttribute('data-preço');
         if (nome && preço) {
@@ -86,7 +84,7 @@ showSlides();
 // Função para exibir os slides
 function showSlides() {
     let slides = document.getElementsByClassName("mySlides");
-    
+
     // Se o slideIndex for maior que o número de slides, reinicia o slideshow
     if (slideIndex >= slides.length) {
         slideIndex = 0;

@@ -122,9 +122,6 @@
         <div class="conteudo-principal">
             <h1>RESTAURANTE LA TAVOLA</h1>
             <h2>OS MELHORES MACARRÕES VOCÊ SÓ ENCONTRA AQUI!!</h2>
-            <div class="btn">
-                <a href="formulario/reserva.html" class="reservar">Faça sua reserva aqui</a>
-            </div>
         </div>
     </section>
 
@@ -151,7 +148,7 @@
                     <div class="title">Conheça nossas sobremesas</div>
                     <div class="description">Deliciosas sobremesas para complementar seu prato!</div>
                     <div class="preço">R$ 80,00</div>
-                    <button class="button pedir">Pedir agora</button>
+                    <button class="button pedir" data-nome="Conheça nossas sobremesas" data-preço="80,00">Pedir agora</button>
                 </div>
 
                 <div class="slide" data-id="2" data-name="Macarrão à Bolonhesa" data-preço="79,00">
@@ -159,7 +156,7 @@
                     <div class="title">Macarrão à Bolonhesa</div>
                     <div class="description">O macarrão à bolonhesa é um prato tradicional italiano...</div>
                     <div class="preço">R$ 79,00</div>
-                    <button class="button pedir">Pedir agora</button>
+                    <button class="button pedir" data-nome="Macarrão à Bolonhesa" data-preço="79,00">Pedir agora</button>
                 </div>
 
                 <div class="slide" data-id="3" data-name="Macarrão Carbonara" data-preço="65,00">
@@ -167,7 +164,7 @@
                     <div class="title">Macarrão Carbonara</div>
                     <div class="description">O macarrão carbonara é uma das receitas mais amadas da culinária italiana...</div>
                     <div class="preço">R$ 65,00</div>
-                    <button class="button pedir">Pedir agora</button>
+                    <button class="button pedir" data-nome="Macarrão Carbonara" data-preço="65,00">Pedir agora</button>
                 </div>
 
                 <div class="slide" data-id="4" data-name="Espaguete Carbonara" data-preço="80,00">
@@ -175,7 +172,7 @@
                     <div class="title">Espaguete Carbonara</div>
                     <div class="description">O espaguete carbonara é uma combinação de massa al dente...</div>
                     <div class="preço">R$ 80,00</div>
-                    <button class="button pedir">Pedir agora</button>
+                    <button class="button pedir" data-nome="Espaguete Carbonara" data-preço="80,00">Pedir agora</button>
                 </div>
 
                 <div class="slide" data-id="5" data-name="Macarrão Farfalle" data-preço="79,00">
@@ -183,7 +180,7 @@
                     <div class="title">Macarrão Farfalle</div>
                     <div class="description">O macarrão à bolonhesa é um prato tradicional italiano...</div>
                     <div class="preço">R$ 79,00</div>
-                    <button class="button pedir">Pedir agora</button>
+                    <button class="button pedir" data-nome="Macarrão Farfalle" data-preço="79,00">Pedir agora</button>
                 </div>
 
                 <div class="slide" data-id="6" data-name="Macarrão Fusilli" data-preço="65,00">
@@ -191,37 +188,27 @@
                     <div class="title">Macarrão Fusilli</div>
                     <div class="description">O macarrão fusilli é perfeito para quem gosta de massas em espiral...</div>
                     <div class="preço">R$ 65,00</div>
-                    <button class="button pedir">Pedir agora</button>
+                    <button class="button pedir" data-nome="Macarrão Fusilli" data-preço="65,00">Pedir agora</button>
                 </div>
 
                 <div class="slide" data-id="7" data-name="Macarrão Cheddar" data-preço="80,00">
                     <img src="./macaroni.jpg" alt="Macarrão Cheddar">
                     <div class="title">Macarrão Cheddar</div>
-                    <div class="description">Macarrão com molho cheddar cremoso e saboroso...</div>
+                    <div class="description">Deliciosos macarrões com cheddar cremoso e sabor inconfundível!</div>
                     <div class="preço">R$ 80,00</div>
-                    <button class="button pedir">Pedir agora</button>
+                    <button class="button pedir" data-nome="Macarrão Cheddar" data-preço="80,00">Pedir agora</button>
                 </div>
             </div>
 
-            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
         </div>
-
-        <script>
-            let slideIndex = 0;
-
-            function moveSlide(step) {
-                const slides = document.querySelectorAll('.slide');
-                const totalSlides = slides.length;
-
-                slideIndex = (slideIndex + step + totalSlides) % totalSlides;
-                document.querySelector('.slides').style.transform = `translateX(-${slideIndex * 100}%)`;
-            }
-        </script>
     </section>
 
     <footer>
         <p>&copy; 2024 Restaurante La Tavola. Todos os direitos reservados.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
