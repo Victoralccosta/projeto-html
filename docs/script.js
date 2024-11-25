@@ -1,13 +1,13 @@
 // Função para adicionar itens ao carrinho
-function adicionarAoCarrinho(nome, preco) {
+function adicionarAoCarrinho(nome, preço) {
     // Verifica se o item já está no carrinho
-    const itemExistente = carrinho.find(item => item.nome === nome && item.preco === preco);
+    const itemExistente = carrinho.find(item => item.nome === nome && item.preço === preço);
     if (itemExistente) {
         // Não exibe alerta de duplicação
         return;  // Se o item já existe, apenas não faz nada
     } else {
         // Adiciona o item ao carrinho
-        const item = { nome, preco };
+        const item = { nome, preço };
         carrinho.push(item);
         alert(`${nome} foi adicionado ao seu carrinho!`);
     }
@@ -29,11 +29,11 @@ function atualizarCarrinho() {
 
     let total = 0;
     carrinho.forEach((item, index) => {
-        total += parseFloat(item.preco);
+        total += parseFloat(item.preço);
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item-carrinho');
         itemDiv.innerHTML = `
-            <span>${item.nome} - R$${item.preco}</span>
+            <span>${item.nome} - R$${item.preço}</span>
             <button class="remover" data-index="${index}">Remover</button>
         `;
         carrinhoDiv.appendChild(itemDiv);
@@ -67,9 +67,9 @@ document.querySelectorAll('.pedir').forEach(button => {
     button.addEventListener('click', function() {
         // Garantir que os atributos estão sendo lidos corretamente
         const nome = this.getAttribute('data-nome');
-        const preco = this.getAttribute('data-preco');
-        if (nome && preco) {
-            adicionarAoCarrinho(nome, preco);
+        const preço = this.getAttribute('data-preço');
+        if (nome && preço) {
+            adicionarAoCarrinho(nome, preço);
         } else {
             alert("Erro ao adicionar item ao carrinho.");
         }
