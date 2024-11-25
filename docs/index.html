@@ -17,6 +17,7 @@
             overflow: hidden;
             border-radius: 10px;
             border: 2px solid #ddd;
+            margin-bottom: 40px; /* Garantir que o slider não sobreponha o rodapé */
         }
 
         .slides {
@@ -82,6 +83,15 @@
 
         .next {
             right: 10px;
+        }
+
+        /* Estilo do rodapé */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -188,14 +198,6 @@
                     <img src="./macaroni.jpg" alt="Macarrão Cheddar">
                     <div class="title">Macarrão Cheddar</div>
                     <div class="description">Macarrão com molho cheddar cremoso e saboroso...</div>
-                    <div class="preço">R$ 80,00</div>
-                    <button class="button pedir">Pedir agora</button>
-                </div>
-
-                <div class="slide" data-id="8" data-name="Macarrão Penne" data-preço="80,00">
-                    <img src="./penne.jpg" alt="Macarrão Penne">
-                    <div class="title">Macarrão Penne</div>
-                    <div class="description">Penne com molho de tomate e manjericão fresco...</div>
                     <div class="preço">R$ 80,00</div>
                     <button class="button pedir">Pedir agora</button>
                 </div>
