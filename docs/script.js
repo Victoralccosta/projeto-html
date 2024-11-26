@@ -1,33 +1,32 @@
-let carrinho = JSON.parse(localStorage.getItem('carrinho')) || []; // Recupera o carrinho do localStorage
-let total = 0;  // Total do carrinho
-let tempoPreparoTotal = 0; // Tempo total
+// Função para finalizar o pedido
+function finalizarPedido() {
+    // Limpa o carrinho no localStorage
+    localStorage.removeItem('carrinho');
+
+    // Limpa o array do carrinho
+    carrinho = [];
+
+    // Reinicia o total e o tempo total
+    total = 0;
+    tempoPreparoTotal = 0;
+
+    // Atualiza a interface para refletir que o carrinho está vazio
+    atualizarCarrinho();
+
+    // Exibe uma mensagem de confirmação ou redireciona para uma nova página, por exemplo
+    alert('Pedido finalizado com sucesso!');
+}
 
 // Função para adicionar um item ao carrinho
 function adicionarAoCarrinho(nome, preco, tempoPreparo) {
     const item = { nome, preco, tempoPreparo };
     carrinho.push(item);
 
-    // Atualiza o localStorage
+    // Atualiza o localStorage com os novos itens no carrinho
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
     // Atualiza a interface
     atualizarCarrinho();
-}
-
-// Função para remover um item do carrinho
-function removerDoCarrinho(item, itemElement) {
-    carrinho = carrinho.filter(c => c !== item);
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-    // Atualiza o total
-    total -= item.preco;
-    tempoPreparoTotal -= item.tempoPreparo;
-
-    // Remove da interface
-    itemElement.remove();
-
-    // Atualiza o total na interface
-    document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
 }
 
 // Função para atualizar o carrinho na interface
@@ -54,6 +53,22 @@ function atualizarCarrinho() {
     });
 
     // Atualiza o total
+    document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+}
+
+// Função para remover um item do carrinho
+function removerDoCarrinho(item, itemElement) {
+    carrinho = carrinho.filter(c => c !== item);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    // Atualiza o total
+    total -= item.preco;
+    tempoPreparoTotal -= item.tempoPreparo;
+
+    // Remove da interface
+    itemElement.remove();
+
+    // Atualiza o total na interface
     document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
 }
 
