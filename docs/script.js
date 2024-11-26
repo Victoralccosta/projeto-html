@@ -98,7 +98,7 @@ for (let prato in produtos) {
     produto.classList.add('produto');
     produto.innerHTML = `
         <h3>${prato}</h3>
-        <p>Preço: R$ ${produtos[prato].preco.toFixed(2)}</p>
+        <p>Preco: R$ ${produtos[prato].preco.toFixed(2)}</p>
         <p>Tempo de preparo: ${produtos[prato].tempo} minutos</p>
         <button onclick="adicionarAoCarrinho('${prato}', ${produtos[prato].preco}, ${produtos[prato].tempo})">Adicionar ao carrinho</button>
     `;
