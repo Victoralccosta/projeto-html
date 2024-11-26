@@ -1,176 +1,65 @@
-// Inicializa a variável carrinho
-let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+// Função para finalizar o pedido e enviar os dados para o servidor
+function finalizarReserva() {
+    // Coleta os dados do formulário
+    const nome = document.getElementById("nome").value;
+    const email = document.getElementById("email").value;
+    const telefone = document.getElementById("telefone").value;
+    const personas = document.getElementById("personas").value;
+    const data = document.getElementById("data").value;
+    const hora = document.getElementById("hora").value;
+    const comentarios = document.getElementById("comentarios").value;
 
-// Função para atualizar o carrinho na interface
-function atualizarCarrinho() {
-    const itensCarrinho = document.getElementById('itensCarrinho');
-    itensCarrinho.innerHTML = ''; // Limpa o carrinho na interface
-
-    let total = 0;  // Zera o total para recalcular
-    let tempoPreparoTotal = 0;  // Zera o tempo de preparo total
-
-    // Exibe os itens no carrinho
-    carrinho.forEach(item => {
-        const itemElement = document.createElement('li');
-        itemElement.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} - ${item.tempoPreparo} min`;
-
-        const botaoRemover = document.createElement('button');
-        botaoRemover.textContent = 'Remover';
-        botaoRemover.classList.add('remover');
-        botaoRemover.onclick = () => removerDoCarrinho(item, itemElement);
-        itemElement.appendChild(botaoRemover);
-        itensCarrinho.appendChild(itemElement);
-
-        total += item.preco;
-        tempoPreparoTotal += item.tempoPreparo;
-    });
-
-    // Atualiza o total na interface
-    document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
-}
-
-// Função para adicionar um item ao carrinho
-function adicionarAoCarrinho(nome, preco, tempoPreparo) {
-    const item = { nome, preco, tempoPreparo };
-    carrinho.push(item);
-
-    // Atualiza o localStorage
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-    // Atualiza a interface
-    atualizarCarrinho();
-}
-
-// Função para remover um item do carrinho
-function removerDoCarrinho(item, itemElement) {
-    carrinho = carrinho.filter(c => c !== item);
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-    // Atualiza a interface
-    atualizarCarrinho();
-}
-
-// Função para finalizar o pedido
-function finalizarPedido() {
-    const mensagem = document.getElementById('mensagem');
-    mensagem.textContent = `Obrigado por seu pedido! Total: R$ ${total.toFixed(2)}. Seu pedido está sendo preparado e será entregue em ${tempoPreparoTotal} minutos.`;
-
-    // Limpa o carrinho
-    carrinho = [];
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-    // Atualiza a interface
-    atualizarCarrinho();
-}
-
-
-const cardapio = document.getElementById('cardapio');
-for (let prato in produtos) {
-    const produto = document.createElement('div');
-    produto.classList.add('produto');
-    produto.innerHTML = `
-        <h3>${prato}</h3>
-        <p>Preço: R$ ${produtos[prato].preco.toFixed(2)}</p>
-        <p>Tempo de preparo: ${produtos[prato].tempo} minutos</p>
-        <button onclick="adicionarAoCarrinho('${prato}', ${produtos[prato].preco}, ${produtos[prato].tempo})">Adicionar ao carrinho</button>
-    `;
-    cardapio.appendChild(produto);
-}
-
-// Carrega o carrinho ao carregar a página
-window.onload = function() {
-    atualizarCarrinho(); // Para inicializar o carrinho
-};
-
-// Funções para controle do slider
-
-// Variáveis para controle do slider
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-const slidesContainer = document.querySelector('.slides');
-const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
-
-// Função para mudar para o slide anterior
-function showPreviousSlide() {
-    currentSlide--;
-    if (currentSlide < 0) {
-        currentSlide = slides.length - 1;
+    // Validação simples
+    if (!nome || !email || !telefone || !personas || !data || !hora) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
     }
-    updateSliderPosition();
-}
 
-// Função para mudar para o próximo slide
-function showNextSlide() {
-    currentSlide++;
-    if (currentSlide >= slides.length) {
-        currentSlide = 0;
-    }
-    updateSliderPosition();
-}
+    // Criar um objeto com os dados do formulário
+    const reserva = {
+        nome,
+        email,
+        telefone,
+        personas,
+        data,
+        hora,
+        comentarios,
+        carrinho: carrinho // Adiciona os itens do carrinho à reserva
+    };
 
-// Função para atualizar a posição do slider
-function updateSliderPosition() {
-    const newTransformValue = -currentSlide * 100; // Desloca os slides para a esquerda
-    slidesContainer.style.transform = `translateX(${newTransformValue}%)`;
-}
+    // Envia os dados para o servidor usando fetch
+    fetch('/reservar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reserva) // Envia os dados como JSON
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Exibe uma mensagem de sucesso ou falha
+        alert("Reserva realizada com sucesso!");
 
-// Adiciona os ouvintes de evento para os botões
-prevButton.addEventListener('click', showPreviousSlide);
-nextButton.addEventListener('click', showNextSlide);
+        // Limpa o carrinho e o localStorage
+        carrinho = [];
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
-// Inicializa o slider com o primeiro slide
-updateSliderPosition();
+        // Atualiza a interface do carrinho
+        atualizarCarrinho();
 
-// Função para adicionar o item do slider ao carrinho
-document.querySelectorAll('.button.pedir').forEach(button => {
-    button.addEventListener('click', (event) => {
-        const nome = event.target.getAttribute('data-nome');
-        const preco = parseFloat(event.target.getAttribute('data-preco'));
-        const tempoPreparo = 20;  // Defina um tempo padrão de preparo ou calcule se necessário
-
-        adicionarAoCarrinho(nome, preco, tempoPreparo);
+        // Opcionalmente, você pode limpar os campos do formulário
+        document.getElementById("formularioReserva").reset();
+    })
+    .catch(error => {
+        console.error("Erro ao enviar a reserva:", error);
+        alert("Houve um erro ao realizar a reserva. Tente novamente.");
     });
+}
+
+// Adiciona um ouvinte de evento no botão de envio do formulário
+document.getElementById("formularioReserva").addEventListener("submit", function(event){
+    event.preventDefault(); // Previne o envio padrão do formulário
+
+    // Chama a função para finalizar a reserva
+    finalizarReserva();
 });
-document.addEventListener("DOMContentLoaded", function () {
-    const slides = document.querySelectorAll('.slide');
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
-    let currentSlide = 0;
-
-    function showSlide(index) {
-        // Verifica se o índice é válido
-        if (index < 0) {
-            currentSlide = slides.length - 1;
-        } else if (index >= slides.length) {
-            currentSlide = 0;
-        } else {
-            currentSlide = index;
-        }
-
-        // Atualiza a posição dos slides
-        const slideWidth = slides[0].offsetWidth; // Largura do slide
-        const newTransform = -currentSlide * slideWidth; // Calcula a posição do slide
-
-        document.querySelector('.slides').style.transform = `translateX(${newTransform}px)`;
-    }
-
-    // Navegar para o slide anterior
-    prevButton.addEventListener('click', function () {
-        showSlide(currentSlide - 1);
-    });
-
-    // Navegar para o próximo slide
-    nextButton.addEventListener('click', function () {
-        showSlide(currentSlide + 1);
-    });
-
-    // Inicializa o slider
-    showSlide(currentSlide);
-
-    // Adiciona uma função para responder ao redimensionamento da janela
-    window.addEventListener('resize', function () {
-        showSlide(currentSlide); // Recalcula a posição no redimensionamento
-    });
-});
-
