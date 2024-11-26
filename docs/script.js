@@ -1,7 +1,3 @@
-let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-let total = 0;
-let tempoPreparoTotal = 0;
-
 // Função para atualizar o carrinho na interface
 function atualizarCarrinho() {
     const itensCarrinho = document.getElementById('itensCarrinho');
@@ -133,3 +129,14 @@ nextButton.addEventListener('click', showNextSlide);
 
 // Inicializa o slider com o primeiro slide
 updateSliderPosition();
+
+// Função para adicionar o item do slider ao carrinho
+document.querySelectorAll('.button.pedir').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const nome = event.target.getAttribute('data-nome');
+        const preco = parseFloat(event.target.getAttribute('data-preco'));
+        const tempoPreparo = 20;  // Defina um tempo padrão de preparo ou calcule se necessário
+
+        adicionarAoCarrinho(nome, preco, tempoPreparo);
+    });
+});
