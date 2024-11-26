@@ -1,4 +1,6 @@
-// Seu código anterior aqui
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || []; // Recupera o carrinho do localStorage
+let total = 0;  // Total do carrinho
+let tempoPreparoTotal = 0; // Tempo total
 
 // Função para adicionar um item ao carrinho
 function adicionarAoCarrinho(nome, preco, tempoPreparo) {
@@ -9,8 +11,6 @@ function adicionarAoCarrinho(nome, preco, tempoPreparo) {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
     // Atualiza a interface
-    total = 0;
-    tempoPreparoTotal = 0;
     atualizarCarrinho();
 }
 
@@ -35,6 +35,9 @@ function atualizarCarrinho() {
     const itensCarrinho = document.getElementById('itensCarrinho');
     itensCarrinho.innerHTML = ''; // Limpa a lista do carrinho
 
+    total = 0;  // Resetando o total a cada atualização
+    tempoPreparoTotal = 0; // Resetando o tempo total
+
     carrinho.forEach(item => {
         const itemElement = document.createElement('li');
         itemElement.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} - ${item.tempoPreparo} min`;
@@ -55,8 +58,6 @@ function atualizarCarrinho() {
 }
 
 // Funções para controle do slider
-
-// Variáveis para controle do slider
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 const slidesContainer = document.querySelector('.slides');
@@ -96,19 +97,11 @@ updateSliderPosition();
 
 // Adicionar ouvintes de evento para os botões "Pedir agora"
 const botoesPedir = document.querySelectorAll('.pedir');
-
 botoesPedir.forEach(botao => {
     botao.addEventListener('click', function() {
-        // Obtém o nome e o preço do item a partir dos atributos do botão
         const nome = botao.getAttribute('data-nome');
         const preco = parseFloat(botao.getAttribute('data-preco').replace(',', '.')); // Converter preço para número
-
-        // Definir tempo de preparo arbitrário (pode ser ajustado de acordo com o item)
-        const tempoPreparo = 15; // Exemplo: 15 minutos
-
-        // Chama a função para adicionar o item ao carrinho
+        const tempoPreparo = 15; // Tempo de preparo arbitrário
         adicionarAoCarrinho(nome, preco, tempoPreparo);
     });
 });
-
-
