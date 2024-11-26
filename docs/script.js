@@ -1,15 +1,7 @@
-let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-let total = 0;
-let tempoPreparoTotal = 0;
+// Seu código anterior aqui
 
 // Função para adicionar um item ao carrinho
 function adicionarAoCarrinho(nome, preco, tempoPreparo) {
-    // Verifica se o item já está no carrinho
-    const itemExistente = carrinho.find(item => item.nome === nome && item.preco === preco);
-    if (itemExistente) {
-        return;  // Se o item já existe, apenas não faz nada
-    }
-
     const item = { nome, preco, tempoPreparo };
     carrinho.push(item);
 
@@ -54,56 +46,51 @@ function atualizarCarrinho() {
         itemElement.appendChild(botaoRemover);
         itensCarrinho.appendChild(itemElement);
 
-        // Atualiza o total e tempo de preparo
         total += item.preco;
         tempoPreparoTotal += item.tempoPreparo;
     });
 
-    // Atualiza o total na interface
+    // Atualiza o total
     document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
 }
 
-// Função para finalizar o pedido
-function finalizarPedido() {
-    const mensagem = document.getElementById('mensagem');
-    mensagem.textContent = `Obrigado por seu pedido! Total: R$ ${total.toFixed(2)}. Seu pedido está sendo preparado e será entregue em ${tempoPreparoTotal} minutos.`;
+// Funções para controle do slider
 
-    // Limpa o carrinho
-    carrinho = [];
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+// Variáveis para controle do slider
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+const slidesContainer = document.querySelector('.slides');
+const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
 
-    // Atualiza a interface
-    total = 0;
-    tempoPreparoTotal = 0;
-    atualizarCarrinho();
+// Função para mudar para o slide anterior
+function showPreviousSlide() {
+    currentSlide--;
+    if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+    }
+    updateSliderPosition();
 }
 
-// Renderiza o cardápio
-const produtos = {
-    "Macarrão à Bolonhesa": { preco: 79.00, tempo: 40 },
-    "Macarrão Penne": { preco: 65.00, tempo: 30 },
-    "Espaguete Carbonara": { preco: 80.00, tempo: 35 },
-    "Farfalle da Casa": { preco: 75.00, tempo: 40 },
-    "Ravioli Prime": { preco: 65.00, tempo: 30 },
-    "Fusilli de Salmão Grelhado": { preco: 90.00, tempo: 45 },
-    "Tagliatelle Italiana": { preco: 85.00, tempo: 50 },
-    "Capellini com Prosciutto": { preco: 55.00, tempo: 25 },
-    "Macaroni Cheddar": { preco: 80.00, tempo: 20 }
-};
-
-// Exibe os produtos no cardápio
-const cardapio = document.getElementById('cardapio');
-for (let prato in produtos) {
-    const produto = document.createElement('div');
-    produto.classList.add('produto');
-    produto.innerHTML = `
-        <h3>${prato}</h3>
-        <p>Preco: R$ ${produtos[prato].preco.toFixed(2)}</p>
-        <p>Tempo de preparo: ${produtos[prato].tempo} minutos</p>
-        <button onclick="adicionarAoCarrinho('${prato}', ${produtos[prato].preco}, ${produtos[prato].tempo})">Adicionar ao carrinho</button>
-    `;
-    cardapio.appendChild(produto);
+// Função para mudar para o próximo slide
+function showNextSlide() {
+    currentSlide++;
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    }
+    updateSliderPosition();
 }
 
-// Carrega o carrinho ao carregar a página
-atualizarCarrinho();
+// Função para atualizar a posição do slider
+function updateSliderPosition() {
+    const newTransformValue = -currentSlide * 100; // Desloca os slides para a esquerda
+    slidesContainer.style.transform = `translateX(${newTransformValue}%)`;
+}
+
+// Adiciona os ouvintes de evento para os botões
+prevButton.addEventListener('click', showPreviousSlide);
+nextButton.addEventListener('click', showNextSlide);
+
+// Inicializa o slider com o primeiro slide
+updateSliderPosition();
+
