@@ -145,3 +145,45 @@ document.querySelectorAll('.button.pedir').forEach(button => {
         adicionarAoCarrinho(nome, preco, tempoPreparo);
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll('.slide');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        // Verifica se o índice é válido
+        if (index < 0) {
+            currentSlide = slides.length - 1;
+        } else if (index >= slides.length) {
+            currentSlide = 0;
+        } else {
+            currentSlide = index;
+        }
+
+        // Atualiza a posição dos slides
+        const slideWidth = slides[0].offsetWidth; // Largura do slide
+        const newTransform = -currentSlide * slideWidth; // Calcula a posição do slide
+
+        document.querySelector('.slides').style.transform = `translateX(${newTransform}px)`;
+    }
+
+    // Navegar para o slide anterior
+    prevButton.addEventListener('click', function () {
+        showSlide(currentSlide - 1);
+    });
+
+    // Navegar para o próximo slide
+    nextButton.addEventListener('click', function () {
+        showSlide(currentSlide + 1);
+    });
+
+    // Inicializa o slider
+    showSlide(currentSlide);
+
+    // Adiciona uma função para responder ao redimensionamento da janela
+    window.addEventListener('resize', function () {
+        showSlide(currentSlide); // Recalcula a posição no redimensionamento
+    });
+});
+
