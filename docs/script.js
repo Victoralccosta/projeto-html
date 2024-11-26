@@ -120,21 +120,3 @@ botoesPedir.forEach(botao => {
         adicionarAoCarrinho(nome, preco, tempoPreparo);
     });
 });
-// Função para finalizar o pedido
-function finalizarPedido() {
-    // Limpa o carrinho no localStorage
-    localStorage.removeItem('carrinho');
-
-    // Limpa o array do carrinho
-    carrinho = [];
-
-    // Reinicia o total e o tempo total
-    total = 0;
-    tempoPreparoTotal = 0;
-
-    // Atualiza a interface para refletir que o carrinho está vazio
-    atualizarCarrinho();
-
-    // Exibe uma mensagem de confirmação ou redireciona para uma nova página, por exemplo
-    alert('Pedido finalizado com sucesso!');
-}
