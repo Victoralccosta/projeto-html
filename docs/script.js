@@ -94,3 +94,21 @@ nextButton.addEventListener('click', showNextSlide);
 // Inicializa o slider com o primeiro slide
 updateSliderPosition();
 
+// Adicionar ouvintes de evento para os botões "Pedir agora"
+const botoesPedir = document.querySelectorAll('.pedir');
+
+botoesPedir.forEach(botao => {
+    botao.addEventListener('click', function() {
+        // Obtém o nome e o preço do item a partir dos atributos do botão
+        const nome = botao.getAttribute('data-nome');
+        const preco = parseFloat(botao.getAttribute('data-preco').replace(',', '.')); // Converter preço para número
+
+        // Definir tempo de preparo arbitrário (pode ser ajustado de acordo com o item)
+        const tempoPreparo = 15; // Exemplo: 15 minutos
+
+        // Chama a função para adicionar o item ao carrinho
+        adicionarAoCarrinho(nome, preco, tempoPreparo);
+    });
+});
+
+
