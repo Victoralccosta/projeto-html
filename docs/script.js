@@ -1,127 +1,109 @@
-let carrinho = JSON.parse(localStorage.getItem('carrinho')) || []; // Carrega carrinho do localStorage
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+let total = 0;
+let tempoPreparoTotal = 0;
 
-// Função para adicionar itens ao carrinho
-function adicionarAoCarrinho(nome, preço) {
+// Função para adicionar um item ao carrinho
+function adicionarAoCarrinho(nome, preco, tempoPreparo) {
     // Verifica se o item já está no carrinho
-    const itemExistente = carrinho.find(item => item.nome === nome && item.preço === preço);
+    const itemExistente = carrinho.find(item => item.nome === nome && item.preco === preco);
     if (itemExistente) {
-        alert(`${nome} já está no seu carrinho.`);
-        return;  // Se o item já existe, não faz nada
-    } else {
-        // Adiciona o item ao carrinho
-        const item = { nome, preço };
-        carrinho.push(item);
-        alert(`${nome} foi adicionado ao seu carrinho!`);
+        return;  // Se o item já existe, apenas não faz nada
     }
 
-    // Atualiza o carrinho no localStorage
+    const item = { nome, preco, tempoPreparo };
+    carrinho.push(item);
+
+    // Atualiza o localStorage
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    // Atualiza a interface
+    total = 0;
+    tempoPreparoTotal = 0;
     atualizarCarrinho();
 }
 
-// Função para atualizar a exibição do carrinho
+// Função para remover um item do carrinho
+function removerDoCarrinho(item, itemElement) {
+    carrinho = carrinho.filter(c => c !== item);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    // Atualiza o total
+    total -= item.preco;
+    tempoPreparoTotal -= item.tempoPreparo;
+
+    // Remove da interface
+    itemElement.remove();
+
+    // Atualiza o total na interface
+    document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
+}
+
+// Função para atualizar o carrinho na interface
 function atualizarCarrinho() {
-    const carrinhoDiv = document.getElementById('carrinho');
-    carrinhoDiv.innerHTML = '';  // Limpa a exibição atual
+    const itensCarrinho = document.getElementById('itensCarrinho');
+    itensCarrinho.innerHTML = ''; // Limpa a lista do carrinho
 
-    if (carrinho.length === 0) {
-        carrinhoDiv.innerHTML = '<p>O carrinho está vazio.</p>';
-        return;
-    }
+    carrinho.forEach(item => {
+        const itemElement = document.createElement('li');
+        itemElement.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} - ${item.tempoPreparo} min`;
 
-    let total = 0;
-    carrinho.forEach((item, index) => {
-        total += parseFloat(item.preço);
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('item-carrinho');
-        itemDiv.innerHTML = `
-            <span>${item.nome} - R$${item.preço}</span>
-            <button class="remover" data-index="${index}">Remover</button>
-        `;
-        carrinhoDiv.appendChild(itemDiv);
+        const botaoRemover = document.createElement('button');
+        botaoRemover.textContent = 'Remover';
+        botaoRemover.classList.add('remover');
+        botaoRemover.onclick = () => removerDoCarrinho(item, itemElement);
+        itemElement.appendChild(botaoRemover);
+        itensCarrinho.appendChild(itemElement);
+
+        // Atualiza o total e tempo de preparo
+        total += item.preco;
+        tempoPreparoTotal += item.tempoPreparo;
     });
 
-    const totalDiv = document.createElement('div');
-    totalDiv.innerHTML = `<strong>Total: R$${total.toFixed(2)}</strong>`;
-    carrinhoDiv.appendChild(totalDiv);
-
-    // Adiciona evento para remover itens
-    document.querySelectorAll('.remover').forEach(button => {
-        button.addEventListener('click', function() {
-            const index = this.getAttribute('data-index');
-            removerDoCarrinho(index);
-        });
-    });
+    // Atualiza o total na interface
+    document.getElementById('total').textContent = `Total: R$ ${total.toFixed(2)}`;
 }
 
-// Função para remover itens do carrinho
-function removerDoCarrinho(index) {
-    carrinho.splice(index, 1); // Remove o item do carrinho
-    alert('Item removido do carrinho.');
+// Função para finalizar o pedido
+function finalizarPedido() {
+    const mensagem = document.getElementById('mensagem');
+    mensagem.textContent = `Obrigado por seu pedido! Total: R$ ${total.toFixed(2)}. Seu pedido está sendo preparado e será entregue em ${tempoPreparoTotal} minutos.`;
 
-    // Atualiza o carrinho no localStorage
+    // Limpa o carrinho
+    carrinho = [];
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    // Atualiza a interface
+    total = 0;
+    tempoPreparoTotal = 0;
     atualizarCarrinho();
 }
 
-// Adiciona event listeners aos botões "pedir agora"
-document.querySelectorAll('.pedir').forEach(button => {
-    button.addEventListener('click', function() {
-        const nome = this.getAttribute('data-nome');
-        const preço = this.getAttribute('data-preço');
-        
-        if (nome && preço) {
-            adicionarAoCarrinho(nome, preço);
-        } else {
-            alert("Erro ao adicionar item ao carrinho.");
-        }
-    });
-});
+// Renderiza o cardápio
+const produtos = {
+    "Macarrão à Bolonhesa": { preco: 79.00, tempo: 40 },
+    "Macarrão Penne": { preco: 65.00, tempo: 30 },
+    "Espaguete Carbonara": { preco: 80.00, tempo: 35 },
+    "Farfalle da Casa": { preco: 75.00, tempo: 40 },
+    "Ravioli Prime": { preco: 65.00, tempo: 30 },
+    "Fusilli de Salmão Grelhado": { preco: 90.00, tempo: 45 },
+    "Tagliatelle Italiana": { preco: 85.00, tempo: 50 },
+    "Capellini com Prosciutto": { preco: 55.00, tempo: 25 },
+    "Macaroni Cheddar": { preco: 80.00, tempo: 20 }
+};
 
-// Carregar o carrinho na página inicial
+// Exibe os produtos no cardápio
+const cardapio = document.getElementById('cardapio');
+for (let prato in produtos) {
+    const produto = document.createElement('div');
+    produto.classList.add('produto');
+    produto.innerHTML = `
+        <h3>${prato}</h3>
+        <p>Preço: R$ ${produtos[prato].preco.toFixed(2)}</p>
+        <p>Tempo de preparo: ${produtos[prato].tempo} minutos</p>
+        <button onclick="adicionarAoCarrinho('${prato}', ${produtos[prato].preco}, ${produtos[prato].tempo})">Adicionar ao carrinho</button>
+    `;
+    cardapio.appendChild(produto);
+}
+
+// Carrega o carrinho ao carregar a página
 atualizarCarrinho();
-
-// Controle de Slideshow
-let slideIndex = 0;
-showSlides();
-
-// Função para exibir os slides
-function showSlides() {
-    let slides = document.getElementsByClassName("mySlides");
-
-    if (slideIndex >= slides.length) {
-        slideIndex = 0;
-    }
-    if (slideIndex < 0) {
-        slideIndex = slides.length - 1;
-    }
-
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-    }
-
-    slides[slideIndex].style.display = "block";  
-
-    slideIndex++;
-    setTimeout(showSlides, 3000); // Muda de slide a cada 3 segundos
-}
-
-// Função para ir para o slide anterior
-function plusSlides(n) {
-    slideIndex += n;
-    showSlides();
-}
-
-// Função para ir para um slide específico
-function currentSlide(n) {
-    slideIndex = n;
-    showSlides();
-}
-
-// Adicionando eventos aos botões de navegação
-document.querySelector(".prev").addEventListener("click", function() {
-    plusSlides(-1);
-});
-document.querySelector(".next").addEventListener("click", function() {
-    plusSlides(1);
-});
