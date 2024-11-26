@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
     <title>La Tavola - Carrinho de Compras</title>
     <style>
-        /* Estilos básicos do carrinho */
+        /* Estilos do carrinho (mesmo estilo do index) */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8f8f8;
@@ -73,6 +73,50 @@
             background-color: #005F3B;
             border-color: #005F3B;
         }
+
+        /* Estilos para os itens do cardápio */
+        #cardapio {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .produto {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+        }
+
+        .produto h3 {
+            font-size: 1.2em;
+            color: #008C45;
+        }
+
+        .produto p {
+            color: #555;
+            font-size: 1em;
+        }
+
+        .produto button {
+            background-color: #008C45;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .produto button:hover {
+            background-color: #005F3B;
+        }
+
     </style>
 </head>
 <body>
