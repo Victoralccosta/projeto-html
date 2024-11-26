@@ -63,20 +63,7 @@ function finalizarPedido() {
     atualizarCarrinho();
 }
 
-// Renderiza o cardápio
-const produtos = {
-    "Macarrão à Bolonhesa": { preco: 79.00, tempo: 40 },
-    "Macarrão Penne": { preco: 65.00, tempo: 30 },
-    "Espaguete Carbonara": { preco: 80.00, tempo: 35 },
-    "Farfalle da Casa": { preco: 75.00, tempo: 40 },
-    "Ravioli Prime": { preco: 65.00, tempo: 30 },
-    "Fusilli de Salmão Grelhado": { preco: 90.00, tempo: 45 },
-    "Tagliatelle Italiana": { preco: 85.00, tempo: 50 },
-    "Capellini com Prosciutto": { preco: 55.00, tempo: 25 },
-    "Macaroni Cheddar": { preco: 80.00, tempo: 20 }
-};
 
-// Renderiza os itens do cardápio
 const cardapio = document.getElementById('cardapio');
 for (let prato in produtos) {
     const produto = document.createElement('div');
