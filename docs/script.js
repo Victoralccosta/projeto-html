@@ -1,10 +1,13 @@
+// Inicializa a variável carrinho
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
 // Função para atualizar o carrinho na interface
 function atualizarCarrinho() {
     const itensCarrinho = document.getElementById('itensCarrinho');
     itensCarrinho.innerHTML = ''; // Limpa o carrinho na interface
 
-    total = 0;  // Zera o total para recalcular
-    tempoPreparoTotal = 0;  // Zera o tempo de preparo total
+    let total = 0;  // Zera o total para recalcular
+    let tempoPreparoTotal = 0;  // Zera o tempo de preparo total
 
     // Exibe os itens no carrinho
     carrinho.forEach(item => {
@@ -88,7 +91,9 @@ for (let prato in produtos) {
 }
 
 // Carrega o carrinho ao carregar a página
-atualizarCarrinho();
+window.onload = function() {
+    atualizarCarrinho(); // Para inicializar o carrinho
+};
 
 // Funções para controle do slider
 
