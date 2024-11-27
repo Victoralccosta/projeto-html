@@ -85,3 +85,32 @@ function mostrarSlides() {
 
 // Inicia o slider exibindo o primeiro slide
 mostrarSlides();
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Para processar dados de formulários
+app.use(express.urlencoded({ extended: true }));
+
+// Rota para processar o formulário
+app.post('/reservar', (req, res) => {
+    // Processar os dados enviados
+    const { nome, email, telefone, personas, data, hora, comentarios } = req.body;
+
+    console.log('Reserva recebida:');
+    console.log(`Nome: ${nome}`);
+    console.log(`Email: ${email}`);
+    console.log(`Telefone: ${telefone}`);
+    console.log(`Número de pessoas: ${personas}`);
+    console.log(`Data: ${data}`);
+    console.log(`Hora: ${hora}`);
+    console.log(`Comentários: ${comentarios}`);
+
+    // Resposta ao usuário (pode redirecionar ou responder com uma mensagem)
+    res.send('Reserva realizada com sucesso!');
+});
+
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
+});
