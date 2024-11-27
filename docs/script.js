@@ -114,3 +114,13 @@ app.post('/reservar', (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
+function validarFormulario() {
+    // Aqui você pode adicionar a lógica de validação, por exemplo:
+    var nome = document.getElementById('nome').value;
+    if (nome.trim() == "") {
+        alert("Por favor, preencha o nome.");
+        return false; // Impede o envio do formulário se o nome estiver vazio
+    }
+    // Outras validações podem ser adicionadas
+    return true; // Permite o envio do formulário
+}
