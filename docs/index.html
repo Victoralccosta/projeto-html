@@ -143,6 +143,7 @@
         <!-- Slider de itens do cardápio -->
         <div class="slider">
             <div class="slides">
+                <!-- Exemplo de slide com item do cardápio -->
                 <div class="slide" data-id="1" data-name="pratos salgados" data-preco="80,00">
                     <img src="./macaroni.jpg" alt="macarrões">
                     <div class="title">Conheça nossas sobremesas</div>
@@ -167,37 +168,7 @@
                     <button class="button pedir" data-nome="Macarrão Carbonara" data-preco="65,00">Pedir agora</button>
                 </div>
 
-                <div class="slide" data-id="4" data-name="Espaguete Carbonara" data-preco="80,00">
-                    <img src="./carbonara.jpg" alt="Espaguete Carbonara">
-                    <div class="title">Espaguete Carbonara</div>
-                    <div class="description">O espaguete carbonara é uma combinação de massa al dente...</div>
-                    <div class="preco">R$ 80,00</div>
-                    <button class="button pedir" data-nome="Espaguete Carbonara" data-preco="80,00">Pedir agora</button>
-                </div>
-
-                <div class="slide" data-id="5" data-name="Macarrão Farfalle" data-preco="79,00">
-                    <img src="./farfalle.jpg" alt="Macarrão Farfalle">
-                    <div class="title">Macarrão Farfalle</div>
-                    <div class="description">O macarrão à bolonhesa é um prato tradicional italiano...</div>
-                    <div class="preco">R$ 79,00</div>
-                    <button class="button pedir" data-nome="Macarrão Farfalle" data-preco="79,00">Pedir agora</button>
-                </div>
-
-                <div class="slide" data-id="6" data-name="Macarrão Fusilli" data-preco="65,00">
-                    <img src="./fusilli.png" alt="Macarrão Fusilli">
-                    <div class="title">Macarrão Fusilli</div>
-                    <div class="description">O macarrão fusilli é perfeito para quem gosta de massas em espiral...</div>
-                    <div class="preco">R$ 65,00</div>
-                    <button class="button pedir" data-nome="Macarrão Fusilli" data-preco="65,00">Pedir agora</button>
-                </div>
-
-                <div class="slide" data-id="7" data-name="Macarrão Cheddar" data-preco="80,00">
-                    <img src="./macaroni.jpg" alt="Macarrão Cheddar">
-                    <div class="title">Macarrão Cheddar</div>
-                    <div class="description">Deliciosos macarrões com cheddar cremoso e sabor inconfundível!</div>
-                    <div class="preco">R$ 80,00</div>
-                    <button class="button Pedir" data-nome="Macarrão Cheddar" data-preco="80,00">Pedir agora</button>
-                </div>
+                <!-- Mais itens -->
             </div>
 
             <button class="prev">&#10094;</button>
@@ -209,6 +180,61 @@
         <p>&copy; 2024 Restaurante La Tavola. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Inicializa o carrinho (pode ser um array que armazena os itens)
+        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+        // Função para adicionar item ao carrinho
+        function adicionarAoCarrinho(event) {
+            const button = event.target;
+            const nome = button.getAttribute('data-nome');
+            const preco = button.getAttribute('data-preco');
+
+            const itemCarrinho = { nome, preco: parseFloat(preco) };
+
+            // Adiciona o item ao carrinho
+            carrinho.push(itemCarrinho);
+
+            // Atualiza o localStorage
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+            // Exibe uma mensagem de confirmação
+            alert(`${nome} foi adicionado ao seu carrinho!`);
+        }
+
+        // Adiciona evento de clique nos botões "Pedir Agora"
+        const botoesAdicionar = document.querySelectorAll('.pedir');
+        botoesAdicionar.forEach(button => {
+            button.addEventListener('click', adicionarAoCarrinho);
+        });
+
+        // Lógica do Slider
+        let slideIndex = 0;
+
+        function moverSlide(n) {
+            slideIndex += n;
+            mostrarSlides();
+        }
+
+        function mostrarSlides() {
+            const slides = document.querySelectorAll('.slide');
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+            if (slideIndex < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            const offset = -slideIndex * 100;
+            document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
+        }
+
+        // Inicia o slider exibindo o primeiro slide
+        mostrarSlides();
+
+        // Eventos dos botões do slider
+        document.querySelector('.prev').addEventListener('click', () => moverSlide(-1));
+        document.querySelector('.next').addEventListener('click', () => moverSlide(1));
+    </script>
 </body>
 </html>
