@@ -63,3 +63,25 @@ document.getElementById("formularioReserva").addEventListener("submit", function
     // Chama a função para finalizar a reserva
     finalizarReserva();
 });
+let slideIndex = 0;
+
+function moverSlide(n) {
+    slideIndex += n;
+    mostrarSlides();
+}
+
+function mostrarSlides() {
+    const slides = document.querySelectorAll('.slide');
+    if (slideIndex >= slides.length) {
+        slideIndex = 0;
+    }
+    if (slideIndex < 0) {
+        slideIndex = slides.length - 1;
+    }
+    
+    const offset = -slideIndex * 100; // Cada slide ocupa 100% da largura
+    document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
+}
+
+// Inicia o slider exibindo o primeiro slide
+mostrarSlides();
