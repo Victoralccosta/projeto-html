@@ -6,121 +6,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
-    <title>La Tavola - Carrinho de Compras</title>
+    <title>Restaurante La Tavola</title>
     <style>
-        /* Estilos do carrinho (mesmo estilo do index) */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f8f8;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            padding-top: 80px;
+        /* Estilo para o slider */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            margin-bottom: 40px; /* Garantir que o slider não sobreponha o rodapé */
         }
 
-        h1 {
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
             text-align: center;
-            font-size: 36px;
-            color: #008C45;
-            margin-top: 80px;
+            padding: 20px;
         }
 
-        .carrinho {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
-            max-width: 900px;
-            margin: 0 auto;
+        .slide img {
+            width: 100%;
+            height: 300px; /* Definindo uma altura fixa para todas as imagens */
+            object-fit: cover; /* Fazendo com que as imagens preencham a área sem distorcer */
+            border-radius: 10px;
         }
 
-        .total {
+        .title {
+            font-size: 24px;
             font-weight: bold;
-            font-size: 1.5em;
-            color: #F44336;
+            margin: 10px 0;
         }
 
-        .remover {
-            background-color: #F44336;
+        .description {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .preco {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #333;
             color: white;
             border: none;
-            padding: 8px 15px;
-            font-size: 0.9em;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .remover:hover {
-            background-color: #D32F2F;
-        }
-
-        button {
-            background-color: #008C45;
-            color: #fff;
-            border: 2px solid #008C45;
-            padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
-            display: block;
-            margin: 20px auto 0;
         }
 
-        button:hover {
-            background-color: #005F3B;
-            border-color: #005F3B;
-        }
-
-        /* Estilos para os itens do cardápio */
-        #cardapio {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
-        .produto {
-            background-color: #fff;
-            padding: 15px;
-            margin: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 250px;
-            text-align: center;
-        }
-
-        .produto h3 {
-            font-size: 1.2em;
-            color: #008C45;
-        }
-
-        .produto p {
-            color: #555;
-            font-size: 1em;
-        }
-
-        .produto button {
-            background-color: #008C45;
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
             padding: 10px;
-            font-size: 1em;
-            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            font-size: 18px;
         }
 
-        .produto button:hover {
-            background-color: #005F3B;
+        .prev {
+            left: 10px;
         }
 
+        .next {
+            right: 10px;
+        }
+
+        /* Estilo do rodapé */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <div class="content">
+            <div class="logo">
+                <img src="logotavolaoficial.png" alt="La Tavola">
+            </div>
+            <ul class="list-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobrenos">Sobre nós</a></li>
+                <li><a href="#cardapio">Cardápio</a></li>
+                <li><a href="#contatos">Contatos</a></li>
+                <li><a href="formulario/reserva.html">Reserva</a></li>
+                <li><a href="carrinho.html"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
 
+            <div class="menu-toggle">
+                <div class="one"></div>
+                <div class="two"></div>
+                <div class="three"></div>
+            </div>
+        </div>
 <h1>La Tavola - Carrinho de Compras</h1>
 
 <div class="carrinho">
