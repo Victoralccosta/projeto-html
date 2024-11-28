@@ -598,5 +598,4 @@ body {
 /* Exibição de slides (apenas um slide visível por vez) */
 .show {     
     display: block !important;
-} 
-   }
+}
