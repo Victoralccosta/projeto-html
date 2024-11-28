@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Aqui você poderia adicionar um código para salvar em um banco de dados ou enviar um e-mail, por exemplo.
 } else {
     // Se a requisição não for POST, redireciona para o formulário
-    header("Location: index.html"); // Altere para o nome correto do seu arquivo HTML
+    header("Location: reserva.html"); // Altere para o nome correto do seu arquivo HTML
     exit;
 }
 ?>
