@@ -36,12 +36,12 @@ function finalizarReserva() {
         body: JSON.stringify(reserva) // Envia os dados como JSON
     })
     .then(response => response.json())
-    .then(data => {
+    .then(data => 
         // Exibe uma mensagem de sucesso ou falha
         alert("Reserva realizada com sucesso!");
 
         // Limpa o carrinho e o localStorage
-        carrinho = [];
+        atualizar Carrinho [];
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
 
         // Atualiza a interface do carrinho
